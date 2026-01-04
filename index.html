@@ -3,43 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bekir Eren Keskin | Portfolyo</title>
+    <title>Bekir Eren Keskin | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        :root { --main-color: #00d4ff; --bg-color: #0a0b10; --text-color: #e0e0e0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; line-height: 1.6; }
-        .hero { height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(45deg, #0a0b10, #1a1c25); border-bottom: 2px solid var(--main-color); }
-        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-        h1 { font-size: 3rem; margin: 0; color: #fff; letter-spacing: 2px; }
-        .subtitle { color: var(--main-color); font-size: 1.2rem; margin-top: 10px; }
-        .card { background: #161b22; padding: 25px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #30363d; }
-        h2 { color: var(--main-color); border-left: 4px solid var(--main-color); padding-left: 15px; }
-        .skills span { background: #21262d; padding: 5px 15px; border-radius: 20px; margin: 5px; display: inline-block; border: 1px solid var(--main-color); font-size: 0.9rem; }
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 3px solid #00d4ff;
+        }
+        .card-custom {
+            background: #111;
+            border: 1px solid #333;
+            transition: 0.3s;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .card-custom:hover {
+            border-color: #00d4ff;
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+        .skill-badge {
+            background: transparent;
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px;
+            font-size: 0.85rem;
+        }
+        .section-title {
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>BEKİR EREN KESKİN</h1>
-        <div class="subtitle">İnsansız Araç Teknikeri Adayı</div>
+
+<div class="hero-section text-center">
+    <div>
+        <h1 class="display-2 fw-bold">BEKİR EREN KESKİN</h1>
+        <p class="lead text-info">İnsansız Araç Teknikeri Adayı & Yazılım Meraklısı</p>
     </div>
-    <div class="container">
-        <div class="card">
-            <h2>Hakkımda</h2>
-            <p>Teknolojiye olan merakımı, Ondokuz Mayıs Üniversitesi'nde aldığım İnsansız Araç Teknikerliği eğitimiyle birleştiriyorum. Kodların fiziksel bir harekete dönüşmesi benim için bir tutku.</p>
-        </div>
-        <div class="card">
-            <h2>Teknik Yetkinlikler</h2>
-            <div class="skills">
-                <span>C (İyi)</span> <span>Python</span> <span>C++</span> <span>SolidWorks</span> <span>Gömülü Sistemler</span>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card-custom p-4 text-center">
+                <h4 class="section-title">İletişim</h4>
+                <p>📍 Yozgat, Türkiye</p>
+                <p>📧 sucabe66@gmail.com</p>
+                <a href="mailto:sucabe66@gmail.com" class="btn btn-outline-info btn-sm w-100">Mesaj Gönder</a>
+            </div>
+            
+            <div class="card-custom p-4">
+                <h4 class="section-title text-center">Yetenekler</h4>
+                <div class="text-center">
+                    <span class="skill-badge">C (İyi)</span>
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">C++</span>
+                    <span class="skill-badge">SolidWorks</span>
+                    <span class="skill-badge">Donanım</span>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <h2>Eğitim</h2>
-            <p><strong>Ondokuz Mayıs Üniversitesi</strong><br>İnsansız Araç Teknikerliği (2025 - 2027)</p>
-        </div>
-        <div class="card">
-            <h2>İletişim</h2>
-            <p>📧 sucabe66@gmail.com<br>📞 0535 376 5015</p>
+
+        <div class="col-md-8">
+            <div class="card-custom p-4">
+                <h4 class="section-title">Hakkımda</h4>
+                <p>Teknoloji benim için sadece bir iş alanı değil, büyük bir tutku. İnsansız Araç Teknikerliği öğrencisi olarak, otonom sistemlerin karmaşık yapısını çözmekten ve kodların fiziksel bir harekete dönüşmesini izlemekten büyük heyecan duyuyorum.</p>
+            </div>
+
+            <div class="card-custom p-4">
+                <h4 class="section-title">Eğitim</h4>
+                <h5>Ondokuz Mayıs Üniversitesi</h5>
+                <p class="text-muted">İnsansız Araç Teknikerliği | 2025 - 2027</p>
+            </div>
         </div>
     </div>
+</div>
+
+<footer class="text-center py-4 border-top border-secondary">
+    <p class="small text-muted">&copy; 2026 Bekir Eren Keskin. Tüm Hakları Saklıdır.</p>
+</footer>
+
 </body>
 </html>
