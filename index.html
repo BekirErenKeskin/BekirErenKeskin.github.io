@@ -3,157 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bekir Eren Keskin | Portfolyo</title>
+    <title>Bekir Eren Keskin | Klasik Portfolyo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Tasarım Ayarları */
+        /* Klasik Renk Paleti: Kahve, Bej, Beyaz */
         :root {
-            --dark-bg: #0d1117;
-            --card-bg: #161b22;
-            --accent-color: #58a6ff;
-            --text-main: #c9d1d9;
-            --text-dim: #8b949e;
+            --dark-brown: #3E2723;
+            --main-beige: #F5F5DC;
+            --soft-white: #FAF9F6;
+            --accent-gold: #D4AF37;
+            --text-dark: #2D2D2D;
         }
 
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
         body {
-            background-color: var(--dark-bg);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Georgia', serif;
             margin: 0;
+            display: flex;
+            background-color: var(--soft-white);
+            color: var(--text-dark);
+        }
+
+        /* Sabit Sol Menü (iPortfolio Tarzı) */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background-color: var(--dark-brown);
+            position: fixed;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 40px 20px;
+            color: var(--main-beige);
+            border-right: 4px solid var(--accent-gold);
         }
 
-        /* Profil Kartı */
-        .profile-card {
-            background: var(--card-bg);
-            width: 90%;
-            max-width: 800px;
-            margin-top: 50px;
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid #30363d;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-gold);
+            margin-bottom: 20px;
+            object-fit: cover;
         }
 
-        h1 { color: #fff; margin-bottom: 5px; font-size: 2.5rem; }
-        .tagline { color: var(--accent-color); font-weight: bold; font-size: 1.1rem; margin-top: 0; }
+        .sidebar h1 { font-size: 1.5rem; text-align: center; margin-bottom: 30px; }
 
-        /* Özet Bölümü */
-        .about-text {
+        .nav-menu { width: 100%; list-style: none; padding: 0; }
+        .nav-menu li { margin: 20px 0; }
+        .nav-menu a {
+            color: var(--main-beige);
+            text-decoration: none;
             font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-main);
-            margin: 30px 0;
-            font-style: italic;
-        }
-
-        /* Bölüm Başlıkları */
-        .section-title {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
-            color: #fff;
-            margin-top: 40px;
-            font-size: 1.5rem;
-        }
-
-        /* Yetenekler ve Bilgiler */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .info-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: left;
-        }
-
-        .skill-bar {
-            background: #30363d;
-            height: 8px;
-            border-radius: 5px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-        }
-
-        .skill-per {
-            background: var(--accent-color);
-            height: 100%;
-            border-radius: 5px;
-            box-shadow: 0 0 10px var(--accent-color);
-        }
-
-        .contact-links a {
-            color: var(--accent-color);
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.5rem;
+            gap: 15px;
             transition: 0.3s;
         }
 
-        .contact-links a:hover { color: #fff; transform: scale(1.2); }
+        /* Buton Parlama Efekti */
+        .nav-menu a:hover {
+            color: var(--accent-gold);
+            text-shadow: 0 0 10px var(--accent-gold);
+            transform: translateX(10px);
+        }
 
-        footer { margin: 50px 0; color: var(--text-dim); font-size: 0.9rem; }
-    </style>
-</head>
-<body>
+        /* Ana İçerik Alanı */
+        .main-content {
+            margin-left: 300px;
+            width: calc(100% - 300px);
+            padding: 60px;
+        }
 
-    <div class="profile-card">
-        <h1>BEKİR EREN KESKİN</h1>
-        <p class="tagline text-info">İnsansız Araç Teknikeri Adayı & Yazılımcı</p>
+        section { min-height: 100vh; padding: 40px 0; }
 
-        <p class="about-text">
-            "Teknoloji benim için sadece bir iş alanı değil, büyük bir tutku. İnsansız Araç Teknikerliği öğrencisi olarak, otonom sistemlerin karmaşık yapısını çözmekten ve kodların fiziksel bir harekete dönüşmesini izlemekten büyük heyecan duyuyorum. Bilgisayar dünyasındaki yenilikleri kovalamayı seven, karşılaştığı teknik sorunları pes etmeden çözmeye çalışan bir tekniker adayıyım."
-        </p>
+        .classic-card {
+            background: white;
+            padding: 30px;
+            border-radius: 5px;
+            border: 1px solid #E0E0E0;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
 
-        <div class="contact-links">
-            <a href="mailto:sucabe66@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="tel:05353765015"><i class="fas fa-phone"></i></a>
-            <a href="https://github.com/BekirErenKeskin"><i class="fab fa-github"></i></a>
-        </div>
+        h2 { border-bottom: 2px solid var(--dark-brown); padding-bottom: 10px; display: inline-block; }
 
-        <div class="section-title"><i class="fas fa-tools"></i> TEKNİK YETKİNLİKLER</div>
-        <div class="grid-container">
-            <div class="info-box">
-                <div>C Programlama <span style="float:right">85%</span></div>
-                <div class="skill-bar"><div class="skill-per" style="width: 85%"></div></div>
-                
-                <div>Python <span style="float:right">65%</span></div>
-                <div class="skill-bar"><div class="skill-per" style="width: 65%"></div></div>
-                
-                <div>SolidWorks <span style="float:right">70%</span></div>
-                <div class="skill-bar"><div class="skill-per" style="width: 70%"></div></div>
-            </div>
-            <div class="info-box">
-                <div>C++ <span style="float:right">60%</span></div>
-                <div class="skill-bar"><div class="skill-per" style="width: 60%"></div></div>
-                
-                <div>Donanım & Sistem <span style="float:right">95%</span></div>
-                <div class="skill-bar"><div class="skill-per" style="width: 95%"></div></div>
-                
-                <div>İngilizce <span style="float:right">50%</span></div>
-                <div class="skill-bar"><div class="skill-per" style="width: 50%"></div></div>
-            </div>
-        </div>
-
-        <div class="section-title"><i class="fas fa-graduation-cap"></i> EĞİTİM</div>
-        <div class="info-box" style="margin-top:20px; text-align:center;">
-            <strong>Ondokuz Mayıs Üniversitesi</strong><br>
-            İnsansız Araç Teknikerliği (Önlisans)<br>
-            <span style="color: var(--text-dim)">2025 - 2027 (Beklenen Mezuniyet)</span>
-        </div>
-    </div>
-
-    <footer>&copy; 2026 Bekir Eren Keskin. Tüm Hakları Saklıdır.</footer>
-
-</body>
-</html>
+        /* Yetenek Barları */
+        .skill-item { margin-bottom: 15px; }
+        .bar-bg { background: #E0E0E0; height: 10px; border-radius: 5px; }
+        .bar-fill { background: var(--dark-brown); height: 100%; border-radius: 5px; box-shadow:
