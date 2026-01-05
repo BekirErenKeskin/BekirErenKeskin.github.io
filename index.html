@@ -3,195 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bekir Eren Keskin</title>
+    <title>Bekir Eren Keskin | Portfolio</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
         /* --- RENK PALETLERİ & AYARLAR --- */
         :root {
-            /* Varsayılan (Aydınlık - Lizzy Tarzı Bej/Kahve) */
-            --bg-color: #F9F7F2;       /* Kırık beyaz / Açık bej */
-            --text-color: #33302E;     /* Çok koyu kahve/gri */
-            --accent-color: #8C7B75;   /* Vizon / Sütlü kahve */
-            --header-bg: #F9F7F2;
-            --link-hover: #000000;
+            /* Aydınlık Mod (Bej/Kahve Tonları) */
+            --bg-color: #F5F2EA;       /* Daha sıcak bir bej */
+            --text-color: #2C2A29;     /* Koyu kahve/antrasit */
+            --accent-color: #9E8B7E;   /* Sütlü kahve */
+            --header-bg: rgba(245, 242, 234, 0.95); /* Hafif şeffaf header */
+            --border-color: rgba(158, 139, 126, 0.3);
         }
 
-        /* Karanlık Mod (Gri/Siyah) */
+        /* Karanlık Mod */
         body.dark-mode {
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
-            --accent-color: #a0a0a0;
-            --header-bg: #121212;
-            --link-hover: #ffffff;
+            --bg-color: #1A1A1A;
+            --text-color: #EAEAEA;
+            --accent-color: #A0A0A0;
+            --header-bg: rgba(26, 26, 26, 0.95);
+            --border-color: rgba(160, 160, 160, 0.3);
         }
 
         * { box-sizing: border-box; }
 
         body {
-            font-family: 'Montserrat', sans-serif; /* Okunaklı modern font */
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
             padding: 0;
             transition: background 0.4s ease, color 0.4s ease;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* --- HEADER (TEPE KISIM) --- */
+        /* --- YAPIŞKAN (STICKY) HEADER --- */
         header {
-            text-align: center;
-            padding: 60px 20px 40px 20px;
+            position: sticky; /* Sayfayla kaymasını sağlar */
+            top: 0;
+            z-index: 1000;
             background-color: var(--header-bg);
-            /* Aşağı indikçe yapışmasın, sayfayla kaysın istedin (Static) */
-            position: relative; 
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px); /* Arkasını hafif bulanıklaştırır */
         }
 
-        /* İSİM LOGOSU */
         .brand-name {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 1.6rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.2em; /* Harflerin arasını açtık */
+            letter-spacing: 0.1em;
             color: var(--text-color);
             text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
         }
 
-        /* --- TEMA BUTONU (Sağ Üst Sabit) --- */
+        /* TEMA BUTONU */
         .theme-switch {
-            position: fixed;
-            top: 25px;
-            right: 25px;
             background: transparent;
-            border: 1px solid var(--text-color);
+            border: none;
             color: var(--text-color);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            font-size: 1.4rem;
             cursor: pointer;
-            z-index: 999;
             transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-        .theme-switch:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
-        }
+        .theme-switch:hover { color: var(--accent-color); }
 
         /* --- ANA İÇERİK --- */
         .container {
-            max-width: 900px;
+            max-width: 1400px; /* Konteynerı çok daha genişlettik */
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* HAKKIMDA BÖLÜMÜ */
+        /* BÜYÜK HAKKIMDA BÖLÜMÜ */
         .about-section {
             text-align: center;
-            margin-bottom: 80px;
-            padding-top: 20px;
+            padding: 100px 20px;
+            max-width: 900px; /* Metin okunaklı kalsın diye sınırladık */
+            margin: 0 auto;
         }
 
         .about-title {
-            font-family: 'Playfair Display', serif; /* Başlıklar için tırnaklı font */
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--accent-color);
-            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem; /* Başlık büyüdü */
+            color: var(--text-color);
+            margin-bottom: 30px;
         }
 
         .about-text {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
+            font-size: 1.25rem; /* Metin fontu büyüdü */
+            font-weight: 400;
+            color: var(--text-color);
+            opacity: 0.9;
         }
 
-        /* CV LİNKİ */
         .cv-link {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 40px;
             color: var(--text-color);
             text-decoration: none;
-            border-bottom: 1px solid var(--accent-color);
-            font-size: 0.9rem;
+            border-bottom: 2px solid var(--accent-color);
+            font-size: 1rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: 0.3s;
+            padding-bottom: 5px;
         }
         .cv-link:hover {
             color: var(--accent-color);
             border-color: transparent;
         }
 
-        /* GALERİ (MASONRY TARZI) */
+        /* --- DEVASA FOTOĞRAF IZGARASI --- */
         .gallery-section {
-            margin-bottom: 100px;
+            padding-bottom: 50px;
         }
         
-        /* Widget çerçevesini temizleyip bütünleştirelim */
-        .behold-widget {
-            width: 100%;
-            display: block;
+        /* Behold Widget'ı zorla büyütüyoruz */
+        behold-widget {
+            width: 100% !important;
+            display: block !important;
+        }
+        /* Widget'ın içindeki resimlerin kapsayıcısı */
+        behold-widget::part(figure) {
+            width: 48% !important; /* Ekranın yarısı kadar (arada boşlukla) */
+            margin: 1% !important;
+            display: inline-block !important;
+        }
+        /* Mobilde tek sütuna düşsün */
+        @media (max-width: 768px) {
+            behold-widget::part(figure) { width: 100% !important; margin: 0 0 20px 0 !important; }
+            header { padding: 20px; }
+            .brand-name { font-size: 1.3rem; }
+            .about-section { padding: 60px 20px; }
         }
 
-        /* --- FOOTER --- */
+        /* --- YENİ İLETİŞİM BÖLÜMÜ --- */
         footer {
+            background-color: var(--bg-color);
+            padding: 80px 20px;
+            border-top: 1px solid var(--border-color);
             text-align: center;
-            padding: 50px 0;
-            border-top: 1px solid rgba(128,128,128, 0.2);
-            margin-top: 50px;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .social-links a {
+        .contact-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 50px;
             color: var(--text-color);
-            font-size: 1.5rem;
-            transition: 0.3s;
-            opacity: 0.7;
         }
 
-        .social-links a:hover {
-            opacity: 1;
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            display: inline-flex;
+            flex-direction: column; /* Alt alta sırala */
+            align-items: flex-start; /* Sola hizala */
+            gap: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .contact-item:hover {
             color: var(--accent-color);
-            transform: translateY(-3px);
+            transform: translateX(10px); /* Üzerine gelince sağa kaysın */
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            width: 30px; /* İkonların hizası bozulmasın */
+            text-align: center;
+            color: var(--accent-color);
         }
 
         .copyright {
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Responsive Ayarlar */
-        @media (max-width: 768px) {
-            .brand-name { font-size: 1.5rem; }
-            .theme-switch { top: 15px; right: 15px; }
+            margin-top: 60px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            letter-spacing: 1px;
         }
     </style>
 </head>
-<body class="light-mode"> <button class="theme-switch" onclick="toggleTheme()">
-        <i id="theme-icon" class="fas fa-moon"></i>
-    </button>
+<body class="light-mode">
 
     <header>
         <a href="#" class="brand-name">Bekir Eren Keskin</a>
+        <button class="theme-switch" onclick="toggleTheme()">
+            <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
     </header>
 
     <div class="container">
@@ -199,7 +219,7 @@
         <section class="about-section">
             <div class="about-title">Hakkımda</div>
             <p class="about-text">
-                Hayatı sadece kodlardan ve devrelerden ibaret görmüyorum. Ondokuz Mayıs Üniversitesi'nde İnsansız Araç Teknolojileri üzerine çalışırken, aynı zamanda dünyayı kendi vizörümden, en doğal haliyle yakalamayı seviyorum.
+                Hayatı sadece kodlardan ibaret görmüyorum. Ondokuz Mayıs Üniversitesi'nde İnsansız Araç Teknolojileri üzerine çalışırken, dünyayı vizörümden en doğal haliyle yakalamayı seviyorum.
             </p>
             <a href="ozgecmis.pdf" target="_blank" class="cv-link">Özgeçmişimi İncele</a>
         </section>
@@ -217,14 +237,43 @@
     </div>
 
     <footer>
-        <div class="social-links">
-            <a href="https://wa.me/905353765015" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:sucabe66@gmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://instagram.com/photographereste" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/bekir-eren-keskin-27542a38b/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        </div>
+        <div class="contact-title">İletişim</div>
+        
+        <ul class="contact-list">
+            <li>
+                <a href="https://instagram.com/photographereste" target="_blank" class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram'da Takip Et</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://wa.me/905353765015" target="_blank" class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp'tan Yaz</span>
+                </a>
+            </li>
+            <li>
+                <a href="mailto:sucabe66@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Mail Gönder</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/bekir-eren-keskin-27542a38b/" target="_blank" class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn Profili</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/BekirErenKeskin" target="_blank" class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub Projeleri</span>
+                </a>
+            </li>
+        </ul>
+
         <div class="copyright">
-            © 2024 Bekir Eren Keskin
+            © 2024 Bekir Eren Keskin. Tüm hakları saklıdır.
         </div>
     </footer>
 
