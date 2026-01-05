@@ -7,30 +7,32 @@
     
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500;1,700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- RENK PALETLERİ & AYARLAR --- */
+        /* --- RENK PALETLERİ (GÜNCELLENDİ) --- */
         :root {
-            /* Aydınlık Mod (Bej/Kahve Tonları) */
-            --bg-color: #F5F2EA;       /* Daha sıcak bir bej */
-            --text-color: #2C2A29;     /* Koyu kahve/antrasit */
-            --accent-color: #9E8B7E;   /* Sütlü kahve */
-            --header-bg: rgba(245, 242, 234, 0.95); /* Hafif şeffaf header */
-            --border-color: rgba(158, 139, 126, 0.3);
+            /* AYDINLIK MOD: Daha koyu/tok bir bej */
+            --bg-color: #E6E0D4;       /* Eskiye göre daha koyu bej */
+            --text-color: #2b2623;     /* Koyu kahve */
+            --accent-color: #8f786b;   /* Vizon kahve */
+            --header-bg: rgba(230, 224, 212, 0.95);
+            --border-color: rgba(143, 120, 107, 0.4);
+            --ad-box-bg: rgba(0,0,0,0.03);
         }
 
-        /* Karanlık Mod */
+        /* KARANLIK MOD: Gri - Siyah - Kahve karışımı */
         body.dark-mode {
-            --bg-color: #1A1A1A;
-            --text-color: #EAEAEA;
-            --accent-color: #A0A0A0;
-            --header-bg: rgba(26, 26, 26, 0.95);
-            --border-color: rgba(160, 160, 160, 0.3);
+            --bg-color: #1C1B1A;       /* Çok koyu, kahveye çalan gri/siyah */
+            --text-color: #D6CEC8;     /* Kirli beyaz/bej yazı */
+            --accent-color: #A69B95;   /* Grimsi kahve */
+            --header-bg: rgba(28, 27, 26, 0.95);
+            --border-color: rgba(166, 155, 149, 0.2);
+            --ad-box-bg: rgba(255,255,255,0.03);
         }
 
         * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; } /* Yumuşak kaydırma */
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -42,28 +44,48 @@
             line-height: 1.7;
         }
 
-        /* --- YAPIŞKAN (STICKY) HEADER --- */
+        /* --- STICKY HEADER --- */
         header {
-            position: sticky; /* Sayfayla kaymasını sağlar */
+            position: sticky;
             top: 0;
             z-index: 1000;
             background-color: var(--header-bg);
-            padding: 25px 40px;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
-            backdrop-filter: blur(10px); /* Arkasını hafif bulanıklaştırır */
+            backdrop-filter: blur(8px);
         }
 
+        /* İsim: İtalik ve Şık */
         .brand-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            font-style: italic; /* İtalik yaptık */
             color: var(--text-color);
             text-decoration: none;
+        }
+
+        /* Header Menü Linkleri */
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
         }
 
         /* TEMA BUTONU */
@@ -71,36 +93,37 @@
             background: transparent;
             border: none;
             color: var(--text-color);
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             cursor: pointer;
-            transition: 0.3s;
+            padding: 5px;
+            margin-left: 10px;
         }
-        .theme-switch:hover { color: var(--accent-color); }
 
-        /* --- ANA İÇERİK --- */
+        /* --- İÇERİK --- */
         .container {
-            max-width: 1400px; /* Konteynerı çok daha genişlettik */
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* BÜYÜK HAKKIMDA BÖLÜMÜ */
+        /* KİMİM BEN BÖLÜMÜ */
         .about-section {
             text-align: center;
-            padding: 100px 20px;
-            max-width: 900px; /* Metin okunaklı kalsın diye sınırladık */
+            padding: 120px 20px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .about-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem; /* Başlık büyüdü */
+            font-size: 3rem;
+            font-style: italic;
             color: var(--text-color);
             margin-bottom: 30px;
         }
 
         .about-text {
-            font-size: 1.25rem; /* Metin fontu büyüdü */
+            font-size: 1.3rem;
             font-weight: 400;
             color: var(--text-color);
             opacity: 0.9;
@@ -116,92 +139,92 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: 0.3s;
             padding-bottom: 5px;
-        }
-        .cv-link:hover {
-            color: var(--accent-color);
-            border-color: transparent;
+            transition: 0.3s;
         }
 
-        /* --- DEVASA FOTOĞRAF IZGARASI --- */
-        .gallery-section {
-            padding-bottom: 50px;
-        }
-        
-        /* Behold Widget'ı zorla büyütüyoruz */
-        behold-widget {
-            width: 100% !important;
-            display: block !important;
-        }
-        /* Widget'ın içindeki resimlerin kapsayıcısı */
-        behold-widget::part(figure) {
-            width: 48% !important; /* Ekranın yarısı kadar (arada boşlukla) */
-            margin: 1% !important;
-            display: inline-block !important;
-        }
-        /* Mobilde tek sütuna düşsün */
-        @media (max-width: 768px) {
-            behold-widget::part(figure) { width: 100% !important; margin: 0 0 20px 0 !important; }
-            header { padding: 20px; }
-            .brand-name { font-size: 1.3rem; }
-            .about-section { padding: 60px 20px; }
-        }
+        /* GALERİ */
+        .gallery-section { padding-bottom: 50px; }
+        behold-widget { width: 100% !important; display: block !important; }
+        behold-widget::part(figure) { width: 48% !important; margin: 1% !important; display: inline-block !important; }
 
-        /* --- YENİ İLETİŞİM BÖLÜMÜ --- */
+        /* --- FOOTER (İLETİŞİM & REKLAM) --- */
         footer {
             background-color: var(--bg-color);
-            padding: 80px 20px;
+            padding: 80px 40px;
             border-top: 1px solid var(--border-color);
-            text-align: center;
+            /* Yan yana dizilim */
+            display: flex; 
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap; /* Mobilde alt alta geçsin */
+            gap: 50px;
         }
 
-        .contact-title {
+        /* Sol Taraf: İletişim */
+        .footer-left {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .footer-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 50px;
+            font-size: 1.8rem;
+            font-style: italic;
+            margin-bottom: 30px;
             color: var(--text-color);
         }
 
         .contact-list {
             list-style: none;
             padding: 0;
-            display: inline-flex;
-            flex-direction: column; /* Alt alta sırala */
-            align-items: flex-start; /* Sola hizala */
-            gap: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 20px;
-            font-size: 1.2rem;
+            gap: 15px;
+            font-size: 1.1rem;
             color: var(--text-color);
             text-decoration: none;
             transition: 0.3s;
-            font-weight: 500;
+        }
+        .contact-item:hover { color: var(--accent-color); padding-left: 5px; }
+        .contact-item i { width: 25px; color: var(--accent-color); font-size: 1.3rem; }
+
+        /* Sağ Taraf: Reklam */
+        .footer-right {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--ad-box-bg);
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
         }
 
-        .contact-item:hover {
+        .ad-text {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .ad-link {
+            font-weight: 700;
+            text-decoration: none;
             color: var(--accent-color);
-            transform: translateX(10px); /* Üzerine gelince sağa kaysın */
+            border-bottom: 1px solid currentColor;
         }
 
-        .contact-item i {
-            font-size: 1.5rem;
-            width: 30px; /* İkonların hizası bozulmasın */
-            text-align: center;
-            color: var(--accent-color);
-        }
-
-        .copyright {
-            margin-top: 60px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-            letter-spacing: 1px;
+        /* MOBİL UYUMLULUK */
+        @media (max-width: 900px) {
+            header { padding: 20px; flex-direction: column; gap: 15px; }
+            .header-nav { gap: 15px; font-size: 0.9rem; }
+            footer { flex-direction: column; padding: 40px 20px; }
+            .footer-right { width: 100%; }
+            behold-widget::part(figure) { width: 100% !important; margin: 0 0 20px 0 !important; }
         }
     </style>
 </head>
@@ -209,15 +232,22 @@
 
     <header>
         <a href="#" class="brand-name">Bekir Eren Keskin</a>
-        <button class="theme-switch" onclick="toggleTheme()">
-            <i id="theme-icon" class="fas fa-moon"></i>
-        </button>
+        
+        <nav class="header-nav">
+            <a href="#about" class="nav-link">Kimim Ben?</a>
+            <a href="#contact" class="nav-link">İletişim</a>
+            <a href="#advertising" class="nav-link">Reklam</a>
+            
+            <button class="theme-switch" onclick="toggleTheme()">
+                <i id="theme-icon" class="fas fa-moon"></i>
+            </button>
+        </nav>
     </header>
 
     <div class="container">
         
-        <section class="about-section">
-            <div class="about-title">Hakkımda</div>
+        <section id="about" class="about-section">
+            <div class="about-title">Kimim Ben?</div>
             <p class="about-text">
                 Hayatı sadece kodlardan ibaret görmüyorum. Ondokuz Mayıs Üniversitesi'nde İnsansız Araç Teknolojileri üzerine çalışırken, dünyayı vizörümden en doğal haliyle yakalamayı seviyorum.
             </p>
@@ -236,45 +266,27 @@
 
     </div>
 
-    <footer>
-        <div class="contact-title">İletişim</div>
+    <footer id="contact">
         
-        <ul class="contact-list">
-            <li>
-                <a href="https://instagram.com/photographereste" target="_blank" class="contact-item">
-                    <i class="fab fa-instagram"></i>
-                    <span>Instagram'da Takip Et</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://wa.me/905353765015" target="_blank" class="contact-item">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp'tan Yaz</span>
-                </a>
-            </li>
-            <li>
-                <a href="mailto:sucabe66@gmail.com" class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>Mail Gönder</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.linkedin.com/in/bekir-eren-keskin-27542a38b/" target="_blank" class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn Profili</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://github.com/BekirErenKeskin" target="_blank" class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub Projeleri</span>
-                </a>
-            </li>
-        </ul>
-
-        <div class="copyright">
-            © 2026 Bekir Eren Keskin. Tüm hakları saklıdır.
+        <div class="footer-left">
+            <div class="footer-title">İletişim</div>
+            <ul class="contact-list">
+                <li><a href="https://instagram.com/photographereste" target="_blank" class="contact-item"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="https://wa.me/905353765015" target="_blank" class="contact-item"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                <li><a href="mailto:sucabe66@gmail.com" class="contact-item"><i class="fas fa-envelope"></i> E-Posta</a></li>
+                <li><a href="https://www.linkedin.com/in/bekir-eren-keskin-27542a38b/" target="_blank" class="contact-item"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                <li><a href="https://github.com/BekirErenKeskin" target="_blank" class="contact-item"><i class="fab fa-github"></i> GitHub</a></li>
+            </ul>
         </div>
+
+        <div id="advertising" class="footer-right">
+            <div class="footer-title">Reklam & İş Birliği</div>
+            <p class="ad-text">
+                Projelerinizde yer almamı, ürünlerinizi incelememi veya sponsorluk çalışmaları yapmamızı isterseniz iletişime geçebilirsiniz. Teknoloji, fotoğrafçılık ve drone sistemleri üzerine iş birliklerine açığım.
+            </p>
+            <a href="mailto:sucabe66@gmail.com" class="ad-link">Teklif Alın &rarr;</a>
+        </div>
+
     </footer>
 
     <script>
