@@ -6,7 +6,6 @@
     <title>Bekir Eren Keskin | Kişisel Web Sitesi</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -73,7 +72,71 @@
             z-index: 1000;
         }
 
-        .profile-img { width: 150px; height: auto; margin-bottom: 20px; }
+        /* --- DÖNEN KART CSS BAŞLANGICI --- */
+        .profil-karti-container {
+            width: 220px;
+            height: 280px;
+            perspective: 1000px;
+            cursor: pointer;
+            margin-bottom: 30px; /* Menü ile arası */
+        }
+
+        .profil-karti {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Havalı geçiş */
+        }
+
+        .profil-karti.cevir {
+            transform: rotateY(180deg);
+        }
+
+        .kart-yuzu {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            background-color: var(--card-bg); /* Temaya uygun renk */
+            color: var(--text-main);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(128,128,128,0.1);
+        }
+
+        .kart-arka {
+            transform: rotateY(180deg);
+            background-color: #0f0f13; /* Arka yüz biraz daha koyu olsun */
+        }
+
+        .profil-resim-yeni, .logo-resim-yeni {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--accent-color);
+            background-color: white;
+        }
+
+        .logo-resim-yeni {
+            border-color: #2196F3;
+            border-radius: 15px; /* Logo biraz karemsi olsun */
+            padding: 5px;
+        }
+
+        .kart-yuzu h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        /* --- DÖNEN KART CSS BİTİŞİ --- */
 
         .nav-menu { width: 100%; list-style: none; padding: 0; }
         .nav-menu li { margin: 10px 0; }
@@ -177,12 +240,18 @@
     </button>
 
     <div class="sidebar">
-        <img src="logo.png" alt="ESTE Logo" style="width: 120px; margin-bottom: 10px; border: none;">
-        
-        <img src="profil.jpg" alt="Bekir Eren Keskin" class="profile-img">
-        
-        <h1>Bekir Eren Keskin</h1>
-        
+        <div class="profil-karti-container" onclick="kartCevir(this)">
+            <div class="profil-karti">
+                <div class="kart-yuzu kart-on">
+                    <img src="profil.jpg" alt="Bekir Eren Keskin" class="profil-resim-yeni">
+                    <h3>Bekir Eren Keskin</h3>
+                </div>
+                <div class="kart-yuzu kart-arka">
+                    <img src="logo.png" alt="Este Logo" class="logo-resim-yeni">
+                    <h3>Este</h3>
+                </div>
+            </div>
+        </div>
         <ul class="nav-menu">
             <li><a href="#about"><i class="fas fa-user"></i> Kimim Ben?</a></li>
             <li><a href="#photography"><i class="fas fa-camera"></i> Kadrajımdan</a></li>
@@ -241,6 +310,13 @@
     </div>
 
     <script>
+        // KART ÇEVİRME FONKSİYONU
+        function kartCevir(element) {
+            const kart = element.querySelector('.profil-karti');
+            kart.classList.toggle('cevir');
+        }
+
+        // TEMA DEĞİŞTİRME FONKSİYONU
         function toggleTheme() {
             const body = document.body;
             const icon = document.getElementById('theme-icon');
