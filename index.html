@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bekir Eren Keskin </title>
+    <title>Bekir Eren Keskin | Kişisel Web Sitesi</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* YENİ RENK PALETİ: Koyu, Gümüş, Füme */
+        /* --- RENK PALETİ: Dark Classic --- */
         :root {
-            --bg-dark: #1e1e24;       /* Arka plan: Çok koyu gri/lacivert */
-            --sidebar-bg: #111116;    /* Menü: Siyaha yakın */
-            --text-main: #e0e0e0;     /* Yazı: Kırık beyaz (göz yormaz) */
-            --card-bg: #2b2b36;       /* Kartlar: Koyu gri */
-            --accent-color: #a0a0a0;  /* Vurgu: Gümüş Gri (Sarı yok) */
-            --hover-color: #ffffff;   /* Üzerine gelince: Beyaz */
+            --bg-dark: #1e1e24;       
+            --sidebar-bg: #111116;    
+            --text-main: #e0e0e0;     
+            --card-bg: #2b2b36;       
+            --accent-color: #a0a0a0;  
+            --hover-color: #ffffff;   
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; }
@@ -41,29 +42,36 @@
             justify-content: center;
             padding: 20px;
             border-right: 1px solid #333;
+            z-index: 1000;
         }
 
-        /* Profil Fotoğrafı Yerine İkon */
-        .resim-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%; /* Yuvarlak yapar */
-    border: 3px solid var(--accent-color); /* Çerçeve rengi */
-    margin-bottom: 20px;
-    object-fit: cover; /* Fotoğrafı sıkıştırmadan sığdırır */
-    box-shadow: 0 0 15px rgba(0,0,0,0.5); /* Hafif gölge */
-}
+        /* Logo Ayarları */
+        .profile-img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 0; 
+            border: none;
+        }
 
         .sidebar h1 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 5px;
             color: #fff;
             letter-spacing: 1px;
         }
 
+        .sidebar h2 {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            font-weight: 400;
+            border: none;
+        }
+
         .nav-menu { width: 100%; list-style: none; padding: 0; }
-        .nav-menu li { margin: 15px 0; width: 100%; }
+        .nav-menu li { margin: 10px 0; width: 100%; }
         
         .nav-menu a {
             color: #888;
@@ -80,7 +88,7 @@
         .nav-menu a:hover {
             background-color: rgba(255,255,255,0.05);
             color: var(--hover-color);
-            padding-left: 25px; /* Sağa kayma efekti */
+            padding-left: 25px; 
         }
 
         /* --- SAĞ TARAF İÇERİK --- */
@@ -92,7 +100,7 @@
 
         section { 
             min-height: 80vh; 
-            padding-top: 20px; 
+            padding-top: 40px; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -104,73 +112,98 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             border: 1px solid #3a3a45;
+            margin-bottom: 40px;
         }
 
-        h2 {
+        h2.section-title {
             border-bottom: 2px solid var(--accent-color);
             padding-bottom: 10px;
             display: inline-block;
             margin-top: 0;
             color: #fff;
+            font-size: 1.8rem;
         }
 
         /* --- YETENEK BARLARI --- */
         .skill-item { margin-bottom: 20px; }
         .skill-item span { display: block; margin-bottom: 5px; font-weight: 500; }
-        
-        .bar-bg {
-            background: #111;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .bar-fill {
-            background: var(--accent-color);
-            height: 100%;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(160, 160, 160, 0.3);
+        .bar-bg { background: #111; height: 8px; border-radius: 4px; overflow: hidden; }
+        .bar-fill { background: var(--accent-color); height: 100%; border-radius: 4px; }
+
+        /* --- GALERİ (FOTOĞRAFÇILIK) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive Izgara */
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        /* --- SOSYAL MEDYA İKONLARI --- */
-        .social-icons {
-            display: flex;
-            gap: 25px;
-            margin-top: 30px;
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid #3a3a45;
+            cursor: pointer;
         }
-        
-        .social-icons a {
-            color: var(--text-main);
-            font-size: 2.2rem;
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* Üzerine gelince büyüme efekti */
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 10px;
+            font-size: 0.9rem;
+            transform: translateY(100%);
             transition: 0.3s;
         }
-        
-        .social-icons a:hover {
-            color: #fff;
-            transform: translateY(-5px) scale(1.1);
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
         }
 
-        /* --- MOBİL UYUMLULUK --- */
+        /* --- SOSYAL MEDYA --- */
+        .social-icons { display: flex; gap: 25px; margin-top: 30px; }
+        .social-icons a { color: var(--text-main); font-size: 2.2rem; transition: 0.3s; }
+        .social-icons a:hover { color: #fff; transform: translateY(-5px); }
+
+        /* MOBİL UYUMLULUK */
         @media (max-width: 768px) {
-            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid #333; }
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; }
             .main-content { margin-left: 0; width: 100%; padding: 20px; }
             body { flex-direction: column; }
             .nav-menu { display: flex; flex-wrap: wrap; justify-content: center; }
             .nav-menu li { width: auto; margin: 0 10px; }
+            .gallery-grid { grid-template-columns: 1fr; } /* Mobilde tek sütun */
         }
     </style>
 </head>
 <body>
 
     <div class="sidebar">
-        <img src="resim.jpg" alt="Bekir Eren Keskin" class="resim-img">
+        <img src="logo.png" alt="ESTE Logo" class="profile-img">
         
         <h1>Bekir Eren Keskin</h1>
+        <h2>Teknoloji & Sanat</h2>
         
         <ul class="nav-menu">
-            <li><a href="#about"><i class="fas fa-user"></i> Hakkımda</a></li>
-            <li><a href="#skills"><i class="fas fa-microchip"></i> Yetenekler</a></li>
-            <li><a href="#education"><i class="fas fa-graduation-cap"></i> Eğitim</a></li>
+            <li><a href="#about"><i class="fas fa-user"></i> Kimim Ben?</a></li>
+            <li><a href="#tech"><i class="fas fa-code"></i> Teknoloji & Yazılım</a></li>
+            <li><a href="#photography"><i class="fas fa-camera"></i> Kadrajımdan</a></li>
             <li><a href="#contact"><i class="fas fa-paper-plane"></i> İletişim</a></li>
         </ul>
     </div>
@@ -179,75 +212,82 @@
         
         <section id="about">
             <div class="classic-card">
-                <h2>Hakkımda</h2>
-                <p style="font-style: italic; font-size: 1.1rem; line-height: 1.8; color: #ccc;">
-                    "Çocukluğumdan beri teknolojiye duyduğum merak, beni bugün Ondokuz Mayıs Üniversitesi'nde İnsansız Araç Teknikerliği yolculuğuna çıkardı. Makinelerin dilini çözmekten ve kodların fiziksel bir harekete dönüşmesini izlemekten büyük keyif alıyorum."
+                <h2 class="section-title">Merhaba, Ben Bekir Eren.</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #ccc; margin-top: 20px;">
+                    "Hayatı sadece kodlardan ve devrelerden ibaret görmüyorum. Bir yandan <strong>Ondokuz Mayıs Üniversitesi</strong>'nde İnsansız Araç Teknolojileri üzerine çalışarak otonom sistemlerin geleceğini tasarlarken, diğer yandan dünyayı vizörümden izlemeyi seviyorum."
+                </p>
+                <p style="color: #ccc; line-height: 1.8;">
+                    Teknolojinin kesinliği ile fotoğrafın sanatsal belirsizliği arasında bir denge kurmaya çalışıyorum. Burası benim dijital atölyem; hem projelerimi hem de hobilerimi bulabileceğiniz kişisel alanım.
                 </p>
             </div>
         </section>
 
-        <section id="skills">
+        <section id="tech">
             <div class="classic-card">
-                <h2>Teknik Yetkinlikler</h2>
+                <h2 class="section-title">Teknoloji Dünyam</h2>
+                <p style="margin-bottom: 25px; color: #888;">Geliştirdiğim projelerde ve akademik hayatımda kullandığım temel araçlar.</p>
                 
                 <div class="skill-item">
-                    <span>C Programlama (İleri Seviye)</span>
+                    <span>C Programlama & Gömülü Sistemler</span>
                     <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
                 </div>
                 
                 <div class="skill-item">
-                    <span>Python (Ortalama Seviye)</span>
+                    <span>Python & Otonom Sürüş Algoritmaları</span>
                     <div class="bar-bg"><div class="bar-fill" style="width: 65%;"></div></div>
                 </div>
 
                 <div class="skill-item">
-                    <span>C++ (Ortalama Seviye)</span>
-                    <div class="bar-bg"><div class="bar-fill" style="width: 60%;"></div></div>
-                </div>
-                
-                <div class="skill-item">
-                    <span>SolidWorks (Teknik Çizim)</span>
+                    <span>SolidWorks (3D Tasarım)</span>
                     <div class="bar-bg"><div class="bar-fill" style="width: 75%;"></div></div>
                 </div>
 
                 <div class="skill-item">
-                    <span>Bilgisayar Donanım & Sistem</span>
+                    <span>Donanım Montaj & Sistem Kurulumu</span>
                     <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
                 </div>
             </div>
         </section>
 
-        <section id="education">
+        <section id="photography">
             <div class="classic-card">
-                <h2>Eğitim Bilgileri</h2>
-                <div style="margin-top: 20px;">
-                    <h3 style="margin: 0; color: #fff;">Ondokuz Mayıs Üniversitesi</h3>
-                    <p style="color: var(--accent-color); margin: 5px 0;">İnsansız Araç Teknikerliği </p>
+                <h2 class="section-title">Amatör Fotoğrafçılık</h2>
+                <p style="color: #888; margin-bottom: 20px;">Teknolojiden uzaklaştığım anlarda yakaladığım bazı kareler.</p>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80" alt="Doğa">
+                        <div class="gallery-caption">Doğa Yürüyüşü</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Kodlama">
+                        <div class="gallery-caption">Çalışma Masam</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="Dağlar">
+                        <div class="gallery-caption">Zirve</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80" alt="Manzara">
+                        <div class="gallery-caption">Gün Batımı</div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="contact">
             <div class="classic-card">
-                <h2>İletişim & Sosyal Medya</h2>
-                <p>Projeler ve iş birlikleri için aşağıdaki kanallardan bana ulaşabilirsiniz:</p>
+                <h2 class="section-title">İletişim</h2>
+                <p>Projeler, iş birlikleri veya sadece bir kahve eşliğinde teknoloji sohbeti için bana ulaşabilirsiniz.</p>
                 
                 <div class="social-icons">
-                    <a href="https://wa.me/905353765015" target="_blank" title="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sucabe66@gmail.com" target="_blank" title="E-posta Gönder">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    
-                    <a href="https://instagram.com/photographereste" target="_blank" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    
-                    <a href="https://www.linkedin.com/in/bekir-eren-keskin-27542a38b/" target="_blank" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
+                    <a href="https://wa.me/905353765015" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:sucabe66@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://instagram.com/photographereste" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/bekir-eren-keskin-27542a38b/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </section>
