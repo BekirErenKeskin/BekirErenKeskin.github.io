@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEKİR EREN KESKİN </title>
+    <title>Bekir Eren Keskin </title>
     
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
         /* --- RENK PALETLERİ --- */
         :root {
-            /* AYDINLIK: Beğendiğin koyu bej */
-            --bg-color: #E6E0D4;       
-            --text-color: #2b2623;     
-            --accent-color: #8f786b;   
-            --header-bg: rgba(230, 224, 212, 0.95);
-            --border-color: rgba(143, 120, 107, 0.4);
-            --card-bg: rgba(255,255,255,0.4); /* Proje kartları için */
-            --ad-box-bg: rgba(0,0,0,0.03);
+            --bg-color: #EAE6DE;       /* Daha temiz, kağıt dokusunda bej */
+            --text-color: #22201E;     /* Siyaha yakın kahve */
+            --accent-color: #8C7868;   /* Vizon */
+            --header-bg: rgba(234, 230, 222, 0.95);
+            --border-color: rgba(140, 120, 104, 0.3);
+            --ad-box-bg: rgba(140, 120, 104, 0.15); /* Reklam kutusu artık daha koyu ve belirgin */
         }
 
-        /* KARANLIK */
         body.dark-mode {
-            --bg-color: #1C1B1A;       
-            --text-color: #D6CEC8;     
-            --accent-color: #A69B95;   
-            --header-bg: rgba(28, 27, 26, 0.95);
-            --border-color: rgba(166, 155, 149, 0.2);
-            --card-bg: rgba(255,255,255,0.05);
-            --ad-box-bg: rgba(255,255,255,0.03);
+            --bg-color: #1A1918;
+            --text-color: #DCD5CD;
+            --accent-color: #A69688;
+            --header-bg: rgba(26, 25, 24, 0.95);
+            --border-color: rgba(166, 150, 136, 0.2);
+            --ad-box-bg: rgba(255,255,255,0.08);
         }
 
         * { box-sizing: border-box; }
@@ -42,12 +38,11 @@
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            transition: background 0.4s ease, color 0.4s ease;
-            line-height: 1.7;
-            overflow-x: hidden; /* Sağa sola taşmayı engeller */
+            line-height: 1.8;
+            overflow-x: hidden;
         }
 
-        /* --- STICKY HEADER --- */
+        /* --- HEADER --- */
         header {
             position: sticky;
             top: 0;
@@ -58,200 +53,194 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 600;
             font-style: italic;
             color: var(--text-color);
             text-decoration: none;
         }
 
-        .header-nav {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
+        .header-nav { display: flex; gap: 25px; align-items: center; }
         .nav-link {
             color: var(--text-color);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
-            position: relative;
             transition: 0.3s;
         }
         .nav-link:hover { color: var(--accent-color); }
 
         .theme-switch {
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 5px;
-            margin-left: 10px;
+            background: none; border: none; color: var(--text-color);
+            font-size: 1.2rem; cursor: pointer; margin-left: 10px;
         }
 
-        /* --- ANA CONTAINER (METİNLER İÇİN DAR) --- */
-        .container {
-            max-width: 900px; /* Metinler okunaklı kalsın */
+        /* --- 1. KAPAK FOTOĞRAFI (Hero Image) --- */
+        .hero-image {
+            width: 100%;
+            height: 70vh; /* Ekranın %70'ini kaplasın */
+            object-fit: cover;
+            display: block;
+            margin-bottom: 0;
+        }
+
+        /* --- 2. MERHABA (Karşılama) --- */
+        .welcome-section {
+            padding: 100px 20px;
+            text-align: center;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
         }
-
-        /* KİMİM BEN */
-        .about-section {
-            text-align: center;
-            padding: 100px 20px 60px 20px;
-        }
-        .about-title, .section-title {
+        .welcome-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-style: italic;
-            color: var(--text-color);
             margin-bottom: 30px;
-            text-align: center;
-        }
-        .about-text {
-            font-size: 1.3rem;
-            font-weight: 400;
             color: var(--text-color);
-            opacity: 0.9;
         }
-        .cv-link {
-            display: inline-block;
-            margin-top: 30px;
-            color: var(--text-color);
-            text-decoration: none;
-            border-bottom: 2px solid var(--accent-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
+        .welcome-text {
+            font-size: 1.4rem;
+            font-weight: 300;
+            line-height: 1.6;
         }
 
-        /* --- PROJELER BÖLÜMÜ --- */
-        .projects-section {
-            padding: 40px 20px 80px 20px;
+        /* --- 3. İKİNCİ YATAY GÖRSEL --- */
+        .separator-image {
+            width: 100%;
+            height: 50vh; /* Yarım ekran boyu */
+            object-fit: cover;
+            display: block;
+            margin: 60px 0;
         }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .project-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 30px;
+
+        /* --- 4. HİKAYEM (KİMİM BEN) - GENİŞ ALAN --- */
+        .story-section {
+            padding: 80px 20px;
+            max-width: 1000px; /* Baya geniş alan istedin */
+            margin: 0 auto;
             text-align: center;
-            transition: 0.3s;
-            cursor: pointer;
         }
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-        }
-        .project-card h3 {
+        .section-header {
             font-family: 'Playfair Display', serif;
-            margin-top: 0;
-            font-size: 1.5rem;
+            font-size: 2.5rem;
+            font-style: italic;
+            margin-bottom: 40px;
+            color: var(--text-color);
+            border-bottom: 1px solid var(--border-color);
+            display: inline-block;
+            padding-bottom: 10px;
         }
-        .project-card p { font-size: 0.9rem; opacity: 0.8; }
+        .story-content {
+            font-size: 1.2rem;
+            text-align: justify; /* Yazı iki yana yaslansın, kitap gibi */
+            column-count: 1; /* Mobilde tek sütun */
+        }
+        /* Masaüstünde 2 sütunlu gazete gibi aksın istersen burayı açabilirsin */
+        @media(min-width: 768px) {
+            .story-content { column-count: 2; column-gap: 50px; }
+        }
 
-        /* --- DEV GALERİ (CONTAINER DIŞINDA) --- */
-        .gallery-full-width {
-            width: 100%; /* Ekranı tam kapla */
-            padding: 0;  /* Kenar boşluğu yok */
-            margin-bottom: 50px;
+        /* --- 5. GALERİ (ZORLA BÜYÜTÜLMÜŞ) --- */
+        .gallery-container {
+            width: 100%;
+            padding: 0;
+            margin-top: 80px;
+            background-color: var(--bg-color);
         }
         
-        /* WIDGET ZORLAMASI */
+        /* WIDGET CSS MÜDAHALESİ */
         behold-widget {
-            width: 100% !important;
-            max-width: 100% !important;
-            display: block !important;
+            width: 100vw !important; /* Ekran genişliği */
+            max-width: none !important;
+            margin-left: calc(-50vw + 50%); /* Ortalamak için hile */
         }
-        /* Resimler devasa olsun */
         behold-widget::part(figure) {
-            width: 48vw !important; /* Ekran genişliğinin yarısı (Viewport Width) */
-            height: 48vw !important; /* Kare olsun */
-            margin: 0.5vw !important; /* Çok ince boşluk */
-            display: inline-block !important;
-            vertical-align: top;
+            width: 100% !important; /* HER BİR RESİM SATIRI KAPLASIN */
+            height: auto !important;
+            margin: 0 0 20px 0 !important;
+            display: block !important;
         }
         behold-widget::part(img) {
             width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important; /* Resmi kutuya doldur */
+            height: auto !important;
+            display: block !important;
+            border-radius: 0 !important; /* Köşeli, tam ekran */
         }
 
-        /* --- FOOTER --- */
+        /* --- 6. PROJELER --- */
+        .projects-section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .project-card {
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            text-align: center;
+            transition: 0.4s;
+        }
+        .project-card:hover {
+            border-color: var(--accent-color);
+            background-color: var(--ad-box-bg);
+        }
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- 7. FOOTER (İLETİŞİM & REKLAM) --- */
         footer {
-            background-color: var(--bg-color);
-            padding: 80px 40px;
             border-top: 1px solid var(--border-color);
-            display: flex; 
-            justify-content: space-between;
-            align-items: flex-start;
+            padding: 80px 40px;
+            display: flex;
             flex-wrap: wrap;
-            gap: 50px;
-            /* Footer da geniş olsun ama çok yayılmasın */
+            justify-content: space-between;
+            gap: 60px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .footer-left { flex: 1; min-width: 300px; }
         .footer-right { 
-            flex: 1; min-width: 300px; 
-            background-color: var(--ad-box-bg);
-            padding: 30px;
+            flex: 1; min-width: 300px;
+            background-color: var(--ad-box-bg); /* RENGİ BELİRGİNLEŞTİRDİM */
+            padding: 40px;
             border-radius: 4px;
-            border: 1px solid var(--border-color);
         }
 
-        .footer-title {
+        .footer-head {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             font-style: italic;
             margin-bottom: 30px;
-            color: var(--text-color);
         }
 
-        .contact-list {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .contact-list { list-style: none; padding: 0; }
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.1rem;
-            color: var(--text-color);
-            text-decoration: none;
+            display: flex; align-items: center; gap: 15px;
+            font-size: 1.1rem; color: var(--text-color);
+            text-decoration: none; margin-bottom: 20px;
             transition: 0.3s;
         }
-        .contact-item:hover { color: var(--accent-color); padding-left: 5px; }
+        .contact-item:hover { color: var(--accent-color); transform: translateX(5px); }
         .contact-item i { width: 25px; color: var(--accent-color); font-size: 1.3rem; }
 
-        .ad-text { font-size: 1rem; margin-bottom: 20px; opacity: 0.9; }
-        .ad-link { font-weight: 700; text-decoration: none; color: var(--accent-color); border-bottom: 1px solid currentColor; }
-
-        /* MOBİL */
-        @media (max-width: 900px) {
-            header { padding: 20px; flex-direction: column; gap: 15px; }
-            .header-nav { gap: 15px; font-size: 0.9rem; flex-wrap: wrap; justify-content: center; }
-            
-            /* Mobilde tek sütun dev resim */
-            behold-widget::part(figure) { width: 95vw !important; height: 95vw !important; margin: 2.5vw !important; }
-            
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            .header-nav { flex-wrap: wrap; justify-content: center; font-size: 0.85rem; }
+            .welcome-title { font-size: 2.5rem; }
             footer { flex-direction: column; padding: 40px 20px; }
         }
     </style>
@@ -261,45 +250,43 @@
     <header>
         <a href="#" class="brand-name">Bekir Eren Keskin</a>
         <nav class="header-nav">
-            <a href="#about" class="nav-link">Kimim Ben?</a>
+            <a href="#welcome" class="nav-link">Merhaba</a>
+            <a href="#story" class="nav-link">Hikayem</a>
+            <a href="#gallery" class="nav-link">Galeri</a>
             <a href="#projects" class="nav-link">Projeler</a>
             <a href="#contact" class="nav-link">İletişim</a>
-            <a href="#advertising" class="nav-link">Reklam</a>
             <button class="theme-switch" onclick="toggleTheme()">
                 <i id="theme-icon" class="fas fa-moon"></i>
             </button>
         </nav>
     </header>
 
-    <div class="container">
-        <section id="about" class="about-section">
-            <div class="about-title">Kimim Ben?</div>
-            <p class="about-text">
-                Tek bir etikete sığmayı reddediyorum. Ondokuz Mayıs Üniversitesi'nde teknoloji ve inovasyon üzerine çalışırken, aynı zamanda dünyayı vizörümden en doğal, en sinematik haliyle yakalamayı seviyorum.
+    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop" alt="Kapak Fotoğrafı" class="hero-image">
+
+    <section id="welcome" class="welcome-section">
+        <h1 class="welcome-title">Merhaba.</h1>
+        <p class="welcome-text">
+            Burada sadece bir teknikerin değil, aynı zamanda dünyayı vizöründen izleyen bir gözlemcinin notlarını bulacaksınız. Teknoloji ile sanatı, kodlar ile kadrajı birleştirdiğim dünyama hoş geldiniz.
+        </p>
+    </section>
+
+    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2232&auto=format&fit=crop" alt="Manzara" class="separator-image">
+
+    <section id="story" class="story-section">
+        <h2 class="section-header">Kimim Ben?</h2>
+        <div class="story-content">
+            <p>
+                Ondokuz Mayıs Üniversitesi'nde İnsansız Araç Teknolojileri üzerine eğitim alırken, aslında her zaman gökyüzüne ve mekaniğe olan merakımın peşinden gittim. Bir drone'un motorlarını çalıştırdığımda hissettiğim heyecanla, gün batımında deklanşöre bastığım andaki huzur benim için aynı kökten besleniyor: <strong>Yaratmak ve Keşfetmek.</strong>
             </p>
-            <a href="ozgecmis.pdf" target="_blank" class="cv-link">Özgeçmişimi İncele</a>
-        </section>
+            <br>
+            <p>
+                Teknik tarafta C dili, gömülü sistemler ve otonom uçuş algoritmalarıyla boğuşurken; diğer yanda ışığın peşinden koşuyorum. Bu site, ne sadece bir CV ne de sadece bir portfolyo. Burası benim dijital atölyem. Hem mühendislik projelerimi hem de sanatsal bakış açımı aynı çatı altında, olduğu gibi, ham haliyle sergiliyorum.
+            </p>
+        </div>
+        <a href="ozgecmis.pdf" target="_blank" style="display:inline-block; margin-top:40px; color:var(--accent-color); text-decoration:none; border-bottom:1px solid; font-weight:600;">ÖZGEÇMİŞİMİ İNCELE</a>
+    </section>
 
-        <section id="projects" class="projects-section">
-            <div class="section-title">Projelerim</div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Drone Sistemleri</h3>
-                    <p>Otonom uçuş algoritmaları ve quadcopter tasarımı üzerine çalışmalar.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Gömülü Yazılım</h3>
-                    <p>C dili ile mikrodenetleyici programlama ve sensör entegrasyonu.</p>
-                </div>
-                <div class="project-card">
-                    <h3>3D Tasarım</h3>
-                    <p>SolidWorks ile insansız araç parçaları ve mekanik modelleme.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div class="gallery-full-width">
+    <section id="gallery" class="gallery-container">
         <behold-widget feed-id="D8JVUGeCDbakCkdkTK7i"></behold-widget>
         <script>
           (() => {
@@ -307,11 +294,29 @@
             s.src="https://w.behold.so/widget.js";d.head.append(s);
           })();
         </script>
-    </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <div style="text-align:center;"><h2 class="section-header">Projelerim</h2></div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Drone Sistemleri</h3>
+                <p>Otonom uçuş algoritmaları, PID kontrolcü tasarımları ve quadcopter mekaniği üzerine çalışmalar.</p>
+            </div>
+            <div class="project-card">
+                <h3>Gömülü Yazılım</h3>
+                <p>STM32 ve Arduino tabanlı mikrodenetleyici programlama. Sensör verilerini işleme ve motor sürücü entegrasyonları.</p>
+            </div>
+            <div class="project-card">
+                <h3>3D Tasarım & Mekanik</h3>
+                <p>SolidWorks kullanarak insansız hava aracı gövdeleri, iniş takımları ve pervane koruyucuları modelleme.</p>
+            </div>
+        </div>
+    </section>
 
     <footer id="contact">
         <div class="footer-left">
-            <div class="footer-title">İletişim</div>
+            <div class="footer-head">İletişim</div>
             <ul class="contact-list">
                 <li><a href="https://instagram.com/photographereste" target="_blank" class="contact-item"><i class="fab fa-instagram"></i> Instagram</a></li>
                 <li><a href="https://wa.me/905353765015" target="_blank" class="contact-item"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
@@ -321,12 +326,12 @@
             </ul>
         </div>
 
-        <div id="advertising" class="footer-right">
-            <div class="footer-title">Reklam & İş Birliği</div>
-            <p class="ad-text">
-                Projelerinizde yer almamı, ürünlerinizi incelememi veya sponsorluk çalışmaları yapmamızı isterseniz iletişime geçebilirsiniz. Teknoloji, fotoğrafçılık ve drone sistemleri üzerine iş birliklerine açığım.
+        <div class="footer-right">
+            <div class="footer-head">Reklam & İş Birliği</div>
+            <p style="opacity: 0.9; margin-bottom: 20px;">
+                Teknoloji incelemeleri, drone çekimleri veya sponsorlu içerik projeleri için benimle iletişime geçebilirsiniz.
             </p>
-            <a href="mailto:sucabe66@gmail.com" class="ad-link">Teklif Alın &rarr;</a>
+            <a href="mailto:sucabe66@gmail.com" style="color:var(--accent-color); font-weight:700; text-decoration:none; border-bottom:1px solid;">Teklif Al &rarr;</a>
         </div>
     </footer>
 
@@ -334,15 +339,11 @@
         function toggleTheme() {
             const body = document.body;
             const icon = document.getElementById('theme-icon');
-            
             body.classList.toggle('dark-mode');
-            
             if (body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
+                icon.classList.remove('fa-moon'); icon.classList.add('fa-sun');
             } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+                icon.classList.remove('fa-sun'); icon.classList.add('fa-moon');
             }
         }
     </script>
