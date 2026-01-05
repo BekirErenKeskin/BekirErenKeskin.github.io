@@ -10,29 +10,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500;1,700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- RENK PALETLERİ (GÜNCELLENDİ) --- */
+        /* --- RENK PALETLERİ --- */
         :root {
-            /* AYDINLIK MOD: Daha koyu/tok bir bej */
-            --bg-color: #E6E0D4;       /* Eskiye göre daha koyu bej */
-            --text-color: #2b2623;     /* Koyu kahve */
-            --accent-color: #8f786b;   /* Vizon kahve */
+            /* AYDINLIK: Beğendiğin koyu bej */
+            --bg-color: #E6E0D4;       
+            --text-color: #2b2623;     
+            --accent-color: #8f786b;   
             --header-bg: rgba(230, 224, 212, 0.95);
             --border-color: rgba(143, 120, 107, 0.4);
+            --card-bg: rgba(255,255,255,0.4); /* Proje kartları için */
             --ad-box-bg: rgba(0,0,0,0.03);
         }
 
-        /* KARANLIK MOD: Gri - Siyah - Kahve karışımı */
+        /* KARANLIK */
         body.dark-mode {
-            --bg-color: #1C1B1A;       /* Çok koyu, kahveye çalan gri/siyah */
-            --text-color: #D6CEC8;     /* Kirli beyaz/bej yazı */
-            --accent-color: #A69B95;   /* Grimsi kahve */
+            --bg-color: #1C1B1A;       
+            --text-color: #D6CEC8;     
+            --accent-color: #A69B95;   
             --header-bg: rgba(28, 27, 26, 0.95);
             --border-color: rgba(166, 155, 149, 0.2);
+            --card-bg: rgba(255,255,255,0.05);
             --ad-box-bg: rgba(255,255,255,0.03);
         }
 
         * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; } /* Yumuşak kaydırma */
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Montserrat', sans-serif;
@@ -42,6 +44,7 @@
             padding: 0;
             transition: background 0.4s ease, color 0.4s ease;
             line-height: 1.7;
+            overflow-x: hidden; /* Sağa sola taşmayı engeller */
         }
 
         /* --- STICKY HEADER --- */
@@ -58,17 +61,15 @@
             backdrop-filter: blur(8px);
         }
 
-        /* İsim: İtalik ve Şık */
         .brand-name {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             font-weight: 700;
-            font-style: italic; /* İtalik yaptık */
+            font-style: italic;
             color: var(--text-color);
             text-decoration: none;
         }
 
-        /* Header Menü Linkleri */
         .header-nav {
             display: flex;
             align-items: center;
@@ -83,12 +84,8 @@
             position: relative;
             transition: 0.3s;
         }
+        .nav-link:hover { color: var(--accent-color); }
 
-        .nav-link:hover {
-            color: var(--accent-color);
-        }
-
-        /* TEMA BUTONU */
         .theme-switch {
             background: transparent;
             border: none;
@@ -99,72 +96,122 @@
             margin-left: 10px;
         }
 
-        /* --- İÇERİK --- */
+        /* --- ANA CONTAINER (METİNLER İÇİN DAR) --- */
         .container {
-            max-width: 1400px;
+            max-width: 900px; /* Metinler okunaklı kalsın */
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* KİMİM BEN BÖLÜMÜ */
+        /* KİMİM BEN */
         .about-section {
             text-align: center;
-            padding: 120px 20px;
-            max-width: 900px;
-            margin: 0 auto;
+            padding: 100px 20px 60px 20px;
         }
-
-        .about-title {
+        .about-title, .section-title {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
             font-style: italic;
             color: var(--text-color);
             margin-bottom: 30px;
+            text-align: center;
         }
-
         .about-text {
             font-size: 1.3rem;
             font-weight: 400;
             color: var(--text-color);
             opacity: 0.9;
         }
-
         .cv-link {
             display: inline-block;
-            margin-top: 40px;
+            margin-top: 30px;
             color: var(--text-color);
             text-decoration: none;
             border-bottom: 2px solid var(--accent-color);
-            font-size: 1rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding-bottom: 5px;
             transition: 0.3s;
         }
 
-        /* GALERİ */
-        .gallery-section { padding-bottom: 50px; }
-        behold-widget { width: 100% !important; display: block !important; }
-        behold-widget::part(figure) { width: 48% !important; margin: 1% !important; display: inline-block !important; }
+        /* --- PROJELER BÖLÜMÜ --- */
+        .projects-section {
+            padding: 40px 20px 80px 20px;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        .project-card p { font-size: 0.9rem; opacity: 0.8; }
 
-        /* --- FOOTER (İLETİŞİM & REKLAM) --- */
+        /* --- DEV GALERİ (CONTAINER DIŞINDA) --- */
+        .gallery-full-width {
+            width: 100%; /* Ekranı tam kapla */
+            padding: 0;  /* Kenar boşluğu yok */
+            margin-bottom: 50px;
+        }
+        
+        /* WIDGET ZORLAMASI */
+        behold-widget {
+            width: 100% !important;
+            max-width: 100% !important;
+            display: block !important;
+        }
+        /* Resimler devasa olsun */
+        behold-widget::part(figure) {
+            width: 48vw !important; /* Ekran genişliğinin yarısı (Viewport Width) */
+            height: 48vw !important; /* Kare olsun */
+            margin: 0.5vw !important; /* Çok ince boşluk */
+            display: inline-block !important;
+            vertical-align: top;
+        }
+        behold-widget::part(img) {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important; /* Resmi kutuya doldur */
+        }
+
+        /* --- FOOTER --- */
         footer {
             background-color: var(--bg-color);
             padding: 80px 40px;
             border-top: 1px solid var(--border-color);
-            /* Yan yana dizilim */
             display: flex; 
             justify-content: space-between;
             align-items: flex-start;
-            flex-wrap: wrap; /* Mobilde alt alta geçsin */
+            flex-wrap: wrap;
             gap: 50px;
+            /* Footer da geniş olsun ama çok yayılmasın */
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        /* Sol Taraf: İletişim */
-        .footer-left {
-            flex: 1;
-            min-width: 300px;
+        .footer-left { flex: 1; min-width: 300px; }
+        .footer-right { 
+            flex: 1; min-width: 300px; 
+            background-color: var(--ad-box-bg);
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
         }
 
         .footer-title {
@@ -182,7 +229,6 @@
             flex-direction: column;
             gap: 20px;
         }
-
         .contact-item {
             display: flex;
             align-items: center;
@@ -195,36 +241,18 @@
         .contact-item:hover { color: var(--accent-color); padding-left: 5px; }
         .contact-item i { width: 25px; color: var(--accent-color); font-size: 1.3rem; }
 
-        /* Sağ Taraf: Reklam */
-        .footer-right {
-            flex: 1;
-            min-width: 300px;
-            background-color: var(--ad-box-bg);
-            padding: 30px;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-        }
+        .ad-text { font-size: 1rem; margin-bottom: 20px; opacity: 0.9; }
+        .ad-link { font-weight: 700; text-decoration: none; color: var(--accent-color); border-bottom: 1px solid currentColor; }
 
-        .ad-text {
-            font-size: 1rem;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-        
-        .ad-link {
-            font-weight: 700;
-            text-decoration: none;
-            color: var(--accent-color);
-            border-bottom: 1px solid currentColor;
-        }
-
-        /* MOBİL UYUMLULUK */
+        /* MOBİL */
         @media (max-width: 900px) {
             header { padding: 20px; flex-direction: column; gap: 15px; }
-            .header-nav { gap: 15px; font-size: 0.9rem; }
+            .header-nav { gap: 15px; font-size: 0.9rem; flex-wrap: wrap; justify-content: center; }
+            
+            /* Mobilde tek sütun dev resim */
+            behold-widget::part(figure) { width: 95vw !important; height: 95vw !important; margin: 2.5vw !important; }
+            
             footer { flex-direction: column; padding: 40px 20px; }
-            .footer-right { width: 100%; }
-            behold-widget::part(figure) { width: 100% !important; margin: 0 0 20px 0 !important; }
         }
     </style>
 </head>
@@ -232,12 +260,11 @@
 
     <header>
         <a href="#" class="brand-name">Bekir Eren Keskin</a>
-        
         <nav class="header-nav">
             <a href="#about" class="nav-link">Kimim Ben?</a>
+            <a href="#projects" class="nav-link">Projeler</a>
             <a href="#contact" class="nav-link">İletişim</a>
             <a href="#advertising" class="nav-link">Reklam</a>
-            
             <button class="theme-switch" onclick="toggleTheme()">
                 <i id="theme-icon" class="fas fa-moon"></i>
             </button>
@@ -245,29 +272,44 @@
     </header>
 
     <div class="container">
-        
         <section id="about" class="about-section">
             <div class="about-title">Kimim Ben?</div>
             <p class="about-text">
-                Hayatı sadece kodlardan ibaret görmüyorum. Ondokuz Mayıs Üniversitesi'nde İnsansız Araç Teknolojileri üzerine çalışırken, dünyayı vizörümden en doğal haliyle yakalamayı seviyorum.
+                Tek bir etikete sığmayı reddediyorum. Ondokuz Mayıs Üniversitesi'nde teknoloji ve inovasyon üzerine çalışırken, aynı zamanda dünyayı vizörümden en doğal, en sinematik haliyle yakalamayı seviyorum.
             </p>
             <a href="ozgecmis.pdf" target="_blank" class="cv-link">Özgeçmişimi İncele</a>
         </section>
 
-        <section class="gallery-section">
-            <behold-widget feed-id="D8JVUGeCDbakCkdkTK7i"></behold-widget>
-            <script>
-              (() => {
-                const d=document,s=d.createElement("script");s.type="module";
-                s.src="https://w.behold.so/widget.js";d.head.append(s);
-              })();
-            </script>
+        <section id="projects" class="projects-section">
+            <div class="section-title">Projelerim</div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Drone Sistemleri</h3>
+                    <p>Otonom uçuş algoritmaları ve quadcopter tasarımı üzerine çalışmalar.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Gömülü Yazılım</h3>
+                    <p>C dili ile mikrodenetleyici programlama ve sensör entegrasyonu.</p>
+                </div>
+                <div class="project-card">
+                    <h3>3D Tasarım</h3>
+                    <p>SolidWorks ile insansız araç parçaları ve mekanik modelleme.</p>
+                </div>
+            </div>
         </section>
+    </div>
 
+    <div class="gallery-full-width">
+        <behold-widget feed-id="D8JVUGeCDbakCkdkTK7i"></behold-widget>
+        <script>
+          (() => {
+            const d=document,s=d.createElement("script");s.type="module";
+            s.src="https://w.behold.so/widget.js";d.head.append(s);
+          })();
+        </script>
     </div>
 
     <footer id="contact">
-        
         <div class="footer-left">
             <div class="footer-title">İletişim</div>
             <ul class="contact-list">
@@ -286,7 +328,6 @@
             </p>
             <a href="mailto:sucabe66@gmail.com" class="ad-link">Teklif Alın &rarr;</a>
         </div>
-
     </footer>
 
     <script>
