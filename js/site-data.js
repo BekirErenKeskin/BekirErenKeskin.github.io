@@ -19,23 +19,23 @@ window.SITE_DATA = {
   vitrinGoster: true,
 
   suSiralar: [
-    "hexa gövdesinden 40 gram daha tıraşladım",
-    "sabah botuna rüzgâr uyarısı ekledim",
-    "daha yüklemem gereken bir sürü fotoğraf var",
+    "staja gidiyorum, calisiyorum.",
+    "uygulama gelistirmeye calisiyorum",
+    "daha paylasmam gereken bir sürü fotoğraf var",
   ],
 
   notlar: [
     {
-      title: "Her drone en az bir kere düşer",
-      date: "28 Haz 2026",
-      tag: "uçuş",
-      excerpt: "İlk kırımın suçlusu rüzgâr değildi; PID'ye fazla güvenen bendim. Düşerken öğrenilenlerin listesi.",
+      title: "Her insan bir kere düser",
+      date: "13 Tem 2026",
+      tag: "hayat",
+      excerpt: "İlk kırımın suçlusu o değildi; dosta fazla güvenen bendim. Düşerken öğrenilenlerin listesi.",
       // url: "https://...",  ← istersen buraya link ekle
     },
     {
-      title: "ISO ile barışmak",
-      date: "11 May 2026",
-      tag: "fotoğraf",
+      title: "AI ile barışmak",
+      date: "28 Haz 2026",
+      tag: "gelecek",
       excerpt: "Grenli fotoğraf bozuk fotoğraf değildir. Işık azaldığında hikâye biter mi, başlar mı?",
     },
     {
