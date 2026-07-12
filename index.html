@@ -1,360 +1,132 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bekir Eren Keskin |</title>
-    <meta name="description" content="Bekir Eren Keskin resmi web sitesi. Samsun'da profesyonel web tasarım, Python otomasyon yazılımları ve İHA/Drone mühendisliği hizmetleri.">
-    <meta name="keywords" content="Bekir Eren Keskin, Web Tasarım, Python Bot, Python, C, C++, İHA Teknikeri, Samsun Yazılım, Drone Sistemleri, Freelance Geliştirici">
-    <meta name="author" content="Bekir Eren Keskin">
-    
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
-    <style>
-        /* --- RENK PALETLERİ --- */
-        :root {
-            --bg-color: #EAE6DE;       /* Daha temiz, kağıt dokusunda bej */
-            --text-color: #22201E;     /* Siyaha yakın kahve */
-            --accent-color: #8C7868;   /* Vizon */
-            --header-bg: rgba(234, 230, 222, 0.95);
-            --border-color: rgba(140, 120, 104, 0.3);
-            --ad-box-bg: rgba(140, 120, 104, 0.15); /* Reklam kutusu artık daha koyu ve belirgin */
-        }
-
-        body.dark-mode {
-            --bg-color: #1A1918;
-            --text-color: #DCD5CD;
-            --accent-color: #A69688;
-            --header-bg: rgba(26, 25, 24, 0.95);
-            --border-color: rgba(166, 150, 136, 0.2);
-            --ad-box-bg: rgba(255,255,255,0.08);
-        }
-
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        /* --- HEADER --- */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: var(--header-bg);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-
-        .brand-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            font-weight: 600;
-            font-style: italic;
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        .header-nav { display: flex; gap: 25px; align-items: center; }
-        .nav-link {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-        .nav-link:hover { color: var(--accent-color); }
-
-        .theme-switch {
-            background: none; border: none; color: var(--text-color);
-            font-size: 1.2rem; cursor: pointer; margin-left: 10px;
-        }
-
-        /* --- 1. KAPAK FOTOĞRAFI (Hero Image) --- */
-        .hero-image {
-            width: 100%;
-            height: 70vh; /* Ekranın %70'ini kaplasın */
-            object-fit: cover;
-            display: block;
-            margin-bottom: 0;
-        }
-
-        /* --- 2. MERHABA (Karşılama) --- */
-        .welcome-section {
-            padding: 100px 20px;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .welcome-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-style: italic;
-            margin-bottom: 30px;
-            color: var(--text-color);
-        }
-        .welcome-text {
-            font-size: 1.4rem;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        /* --- 3. İKİNCİ YATAY GÖRSEL --- */
-        .separator-image {
-            width: 100%;
-            height: 70vh; /* Yarım ekran boyu */
-            object-fit: cover;
-            display: block;
-            margin: 60px 0;
-        }
-
-        /* --- 4. HİKAYEM (KİMİM BEN) - GENİŞ ALAN --- */
-        .story-section {
-            padding: 80px 20px;
-            max-width: 1000px; /* Baya geniş alan istedin */
-            margin: 0 auto;
-            text-align: center;
-        }
-        .section-header {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-style: italic;
-            margin-bottom: 40px;
-            color: var(--text-color);
-            border-bottom: 1px solid var(--border-color);
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        .story-content {
-            font-size: 1.2rem;
-            text-align: justify; /* Yazı iki yana yaslansın, kitap gibi */
-            column-count: 1; /* Mobilde tek sütun */
-        }
-        /* Masaüstünde 2 sütunlu gazete gibi aksın istersen burayı açabilirsin */
-        @media(min-width: 768px) {
-            .story-content { column-count: 2; column-gap: 50px; }
-        }
-
-        /* --- 5. GALERİ  --- */
-        .gallery-container {
-            width: 100%;
-            padding: 0;
-            margin-top: 80px;
-            background-color: var(--bg-color);
-        }
-        
-        /* WIDGET CSS MÜDAHALESİ */
-        behold-widget {
-            width: 100vw !important; /* Ekran genişliği */
-            max-width: none !important;
-            margin-left: calc(-50vw + 50%); /* Ortalamak için hile */
-        }
-        behold-widget::part(figure) {
-            width: 100% !important; /* HER BİR RESİM SATIRI KAPLASIN */
-            height: auto !important;
-            margin: 0 0 20px 0 !important;
-            display: block !important;
-        }
-        behold-widget::part(img) {
-            width: 100% !important;
-            height: auto !important;
-            display: block !important;
-            border-radius: 0 !important; /* Köşeli, tam ekran */
-        }
-
-        /* --- 6. PROJELER --- */
-        .projects-section {
-            padding: 100px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-        .project-card {
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            text-align: center;
-            transition: 0.4s;
-        }
-        .project-card:hover {
-            border-color: var(--accent-color);
-            background-color: var(--ad-box-bg);
-        }
-        .project-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-        }
-
-        /* --- 7. FOOTER (İLETİŞİM & REKLAM) --- */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 80px 40px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 60px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-left { flex: 1; min-width: 300px; }
-        .footer-right { 
-            flex: 1; min-width: 300px;
-            background-color: var(--ad-box-bg); /* RENGİ BELİRGİNLEŞTİRDİM */
-            padding: 40px;
-            border-radius: 4px;
-        }
-
-        .footer-head {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        .contact-list { list-style: none; padding: 0; }
-        .contact-item {
-            display: flex; align-items: center; gap: 15px;
-            font-size: 1.1rem; color: var(--text-color);
-            text-decoration: none; margin-bottom: 20px;
-            transition: 0.3s;
-        }
-        .contact-item:hover { color: var(--accent-color); transform: translateX(5px); }
-        .contact-item i { width: 25px; color: var(--accent-color); font-size: 1.3rem; }
-
-        @media (max-width: 768px) {
-            header { padding: 15px 20px; flex-direction: column; gap: 15px; }
-            .header-nav { flex-wrap: wrap; justify-content: center; font-size: 0.85rem; }
-            .welcome-title { font-size: 2.5rem; }
-            footer { flex-direction: column; padding: 40px 20px; }
-        }
-        .story-content {
-        column-count: 1 !important;
-        columns: 1 !important;
-    }
-</style> 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bekir Eren Keskin</title>
+  <meta name="description" content="Bekir Eren Keskin — insansız araç teknikerliği, gömülü yazılım ve analog fotoğraf. Gündüz gövde çiziyorum, gece bot yazıyorum.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="light-mode">
+<body>
 
-    <header>
-        <a href="#" class="brand-name">Bekir Eren Keskin</a>
-        <nav class="header-nav">
-            <a href="#welcome" class="nav-link">Merhaba!</a>
-            <a href="#story" class="nav-link">Ben Kimim?</a>
-            <a href="#gallery" class="nav-link">Galerim</a>
-            <a href="#projects" class="nav-link">Projelerim</a>
-            <a href="#contact" class="nav-link">İletişim</a>
-            <button class="theme-switch" onclick="toggleTheme()">
-                <i id="theme-icon" class="fas fa-moon"></i>
-            </button>
-        </nav>
-    </header>
+  <!-- ÜST BAR -->
+  <header class="topbar">
+    <a href="#giris" class="brand">
+      <span class="brand-badge">bk</span>
+      <span class="brand-name">bekir eren keskin</span>
+    </a>
+    <nav class="topnav">
+      <a href="#foto">fotoğraf</a>
+      <a href="#proje">projeler</a>
+      <a href="#notlar">notlar</a>
+      <a href="#iletisim">iletişim</a>
+    </nav>
+  </header>
 
-    <img src="kapak.jpg" alt="Kapak Fotoğrafı" class="hero-image">
-
-    <section id="welcome" class="welcome-section">
-        <h1 class="welcome-title">Merhaba.</h1>
-        <p class="welcome-text">
-            Burada sadece bir öğrencinin değil, aynı zamanda dünyayı büyük bir aynadan izleyen bir gözlemcinin notlarını bulacaksınız. Teknoloji ile sanatı, kodlar ile kadrajı birleştirdiğim dünyama hoş geldiniz.
-        </p>
-    </section>
-
-    <img src="ara-gorsel.jpg" alt="Manzara" class="separator-image">
-
-    <section id="story" class="story-section">
-        <h2 class="section-header">Kimim Ben?</h2>
-        <div class="story-content">
-            <p>
-                Merhaba! Ben Bekir Eren Keskin. 2005 doğumlu, hayatını her daim kendini geliştirmeye ve kendine yeni bir şeyler katmaya adamış bir Türk genciyim. Gayem, sadece kalabalığı takip etmek değil, yaptığım işle insanlardan hep bir adım önde olmak. Ondokuz Mayıs Üniversitesi İnsansız Araç Teknikerliği bölümünde eğitim alırken, öğrenmeyi okul sıralarıyla sınırlamıyorum. C, C++ ve Python ile yazılımın derinliklerine iniyor, SolidWorks ile mekanik tasarımlar yaparak kendimi bir adım öne götürüyorum.
-            </p>
-            <br>
-                Yapılamaz denilenin peşinden gitmek ve karmaşık problemleri kodlarla çözmek benim için bir tutku. Her geçen gün teknik yetkinliklerimi artırırken, vizyonumu da genişletiyorum. Geleceği inşa edenlerden biri olmak için çalışıyorum.
-            </p>
-            <p>
-                 Okuduğunuz için <strong>Teşekkür ederim.</strong>
-             </p>
-        </div>
-        <a href="ozgecmis.pdf" target="_blank" style="display:inline-block; margin-top:40px; color:var(--accent-color); text-decoration:none; border-bottom:1px solid; font-weight:600;">ÖZGEÇMİŞİMİ İNCELE</a>
-    </section>
-
-    <section id="gallery" class="gallery-container">
-        <behold-widget feed-id="D8JVUGeCDbakCkdkTK7i"></behold-widget>
-        <script>
-          (() => {
-            const d=document,s=d.createElement("script");s.type="module";
-            s.src="https://w.behold.so/widget.js";d.head.append(s);
-          })();
-        </script>
-    </section>
-
-    <section id="projects" class="projects-section">
-        <div style="text-align:center;"><h2 class="section-header">Projelerim</h2></div>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>İHA Tasarım & Aviyonik Sistemler</h3>
-                <p>SolidWorks ile aerodinamik gövde modelleme, Pixhawk tabanlı otonom uçuş algoritmaları ve yüksek performanslı quadcopter montajı. İHA mekaniği, motor sürücü entegrasyonu ve teknik analiz çözümleri.</p>
-            </div>
-            <div class="project-card">
-                <h3>Web Tasarım & Yazılım Geliştirme</h3>
-                <p>Modern ve mobil uyumlu web siteleri tasarımı, Python ile geliştirilen otomasyon botları ve C/C++, Arduino tabanlı gömülü sistem projeleri. İhtiyaca özel, çok yönlü kodlama çözümleri.</p>
-            </div>
-            <div class="project-card">
-                <h3>Python Otomasyon & Bot Yazılımı</h3>
-                <p>Python ve Telegram API altyapısı kullanılarak geliştirilen özel takip botu. Belirlenen web sitelerini 7/24 tarar, veri değişikliklerini anlık olarak analiz eder ve kullanıcıya mobil bildirim gönderir.</p>
-            </div>
-        </div>
-    </section>
-
-   <footer id="contact">
-    <div class="footer-left">
-        <div class="footer-head">İletişim</div>
-        <ul class="contact-list">
-            <li><a href="https://instagram.com/photographereste" target="_blank" class="contact-item"><i class="fab fa-instagram"></i> Instagram</a></li>
-            <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=sucabe66@gmail.com" target="_blank" class="contact-item"><i class="fas fa-envelope"></i> E-Posta</a></li>
-            <li><a href="https://www.linkedin.com/in/bekir-eren-keskin-27542a38b/" target="_blank" class="contact-item"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-            <li><a href="https://github.com/BekirErenKeskin" target="_blank" class="contact-item"><i class="fab fa-github"></i> GitHub</a></li>
-        </ul>
+  <!-- GİRİŞ -->
+  <section id="giris" class="hero">
+    <div class="hero-main">
+      <p class="kicker">Bekir Eren Keskin · 2005 · İnsansız Araç Teknikerliği</p>
+      <h1>Gündüz gövde çiziyorum, gece bot yazıyorum. <em>Aralarda deklanşöre basıyorum.</em></h1>
+      <p class="lede">Uçan bir şeyin önce çizimini yapmak, sonra onu düşürmemek için kod yazmak, en sonunda da dönüp fotoğrafını çekmek — hepsi aynı merakın halleri. Bu site o merakın not defteri; büyük laf yok, olan biten var.</p>
     </div>
+    <aside class="hero-aside">
+      <figure class="portre-card">
+        <div class="portre-meta"><span>ESTE 400</span><span>▸ PORTRE</span></div>
+        <div class="portre-frame">
+          <img src="assets/profil.jpg" alt="Bekir Eren Keskin — portre">
+        </div>
+        <figcaption>bir vesikalık, ama sevimlisi</figcaption>
+      </figure>
+      <div class="now-card">
+        <p class="now-title">Şu sıralar</p>
+        <ul class="now-list" id="now-list"></ul>
+      </div>
+    </aside>
+  </section>
 
-    <div class="footer-right">
-        <div class="footer-head">Reklam & İş Birliği</div>
-        <p style="opacity: 0.9; margin-bottom: 20px;">
-            Teknoloji, Yazılım, Drone ile alakalı veya sponsorlu içerik projeleri için bir kahve eşliğinde benimle iletişime geçebilirsiniz.
-        </p>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sucabe66@gmail.com" target="_blank" style="color:var(--accent-color); font-weight:700; text-decoration:none; border-bottom:1px solid;">Teklif Al &rarr;</a>
+  <!-- 01 FOTOĞRAF -->
+  <section id="foto" hidden>
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Fotoğraf</h2>
+      <a class="sec-side" href="https://instagram.com/photographereste" target="_blank" rel="noopener">@photographereste — filtre yok, sıra var ↗</a>
     </div>
-</footer>
+    <div class="filmstrip-wrap">
+      <div class="filmstrip" id="filmstrip"></div>
+    </div>
+  </section>
 
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const icon = document.getElementById('theme-icon');
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon'); icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun'); icon.classList.add('fa-moon');
-            }
-        }
-    </script>
+  <!-- 02 PROJELER -->
+  <section id="proje">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Projeler</h2>
+      <span class="sec-side">GitHub'dan kendi kendine düşüyor</span>
+    </div>
+    <div class="repo-list" id="repo-list"></div>
+  </section>
 
+  <!-- 03 NOTLAR -->
+  <section id="notlar">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Notlar</h2>
+      <span class="sec-side">uzun uzun değil; aklımda kalanlar</span>
+    </div>
+    <div class="note-list" id="note-list"></div>
+  </section>
+
+  <!-- 04 VİTRİN -->
+  <section id="vitrin">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Vitrin</h2>
+    </div>
+    <div class="vitrin-box">
+      <div class="vitrin-main">
+        <h3>Burası şimdilik boş. Bilerek.</h3>
+        <p>İleride kendi ürettiklerim — belki bir gövde kiti, belki baskı fotoğraflar — burada duracak. Söz vermiyorum, yer ayırıyorum.</p>
+        <span class="tag tag-accent-2">yakında</span>
+      </div>
+      <div class="vitrin-circles"><span></span><span></span><span></span></div>
+    </div>
+  </section>
+
+  <!-- 05 İLETİŞİM -->
+  <section id="iletisim">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>İletişim</h2>
+      <span class="sec-side">abartısız</span>
+    </div>
+    <div class="contact-list">
+      <a class="contact-row" href="https://instagram.com/photographereste" target="_blank" rel="noopener">
+        <span class="contact-name">Instagram</span>
+        <span class="contact-handle">@photographereste ↗</span>
+      </a>
+      <a class="contact-row" href="https://github.com/BekirErenKeskin" target="_blank" rel="noopener">
+        <span class="contact-name">GitHub</span>
+        <span class="contact-handle">BekirErenKeskin ↗</span>
+      </a>
+      <a class="contact-row" href="https://linkedin.com/in/bekirerenkeskin" target="_blank" rel="noopener">
+        <span class="contact-name">LinkedIn</span>
+        <span class="contact-handle">in/bekirerenkeskin ↗</span>
+      </a>
+      <a class="contact-row" href="mailto:sucabe66@gmail.com">
+        <span class="contact-name">E-posta</span>
+        <span class="contact-handle">sucabe66@gmail.com ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>© <span id="yil"></span> Bekir Eren Keskin · El yapımıdır; kırım raporları dahil.</footer>
+
+  <script src="js/site-data.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
