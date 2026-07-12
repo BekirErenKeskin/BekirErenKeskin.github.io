@@ -21,7 +21,7 @@ window.SITE_DATA = {
   suSiralar: [
     "hexa gövdesinden 40 gram daha tıraşladım",
     "sabah botuna rüzgâr uyarısı ekledim",
-    "taranmayı bekleyen iki makara film var",
+    "daha yüklemem gereken bir sürü fotoğraf var",
   ],
 
   notlar: [

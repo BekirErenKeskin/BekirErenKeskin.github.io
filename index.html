@@ -6,6 +6,10 @@
   <title>Bekir Eren Keskin</title>
   <meta name="description" content="Bekir Eren Keskin — insansız araç teknikerliği, gömülü yazılım ve analog fotoğraf. Gündüz gövde çiziyorum, gece bot yazıyorum.">
   <link rel="icon" type="image/png" href="favicon.png">
+  <script>
+    // Tema tercihini CSS yüklenmeden uygula (açılışta yanıp sönmeyi önler)
+    try { document.documentElement.setAttribute('data-tema', localStorage.getItem('bek-tema') || 'acik'); } catch (e) {}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo:wght@400&family=Figtree:wght@400;600;700&display=swap">
@@ -16,31 +20,38 @@
   <!-- ÜST BAR -->
   <header class="topbar">
     <a href="#giris" class="brand">
-      <span class="brand-badge">bk</span>
-      <span class="brand-name">bekir eren keskin</span>
+      <span class="brand-name">Bekir Eren Keskin</span>
     </a>
     <nav class="topnav">
-      <a href="#foto">fotoğraf</a>
-      <a href="#proje">projeler</a>
-      <a href="#notlar">notlar</a>
-      <a href="#iletisim">iletişim</a>
+      <a href="#foto">Fotoğraf</a>
+      <a href="#proje">Projeler</a>
+      <a href="#notlar">Notlar</a>
+      <a href="#iletisim">İletişim</a>
+      <button id="tema-btn" class="tema-btn" aria-label="Açık/koyu tema" title="Açık/koyu tema">
+        <svg class="ikon-gunes" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+        <svg class="ikon-ay" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+      </button>
     </nav>
   </header>
 
   <!-- GİRİŞ -->
   <section id="giris" class="hero">
+    <div class="hero-isik" id="hero-isik" aria-hidden="true"></div>
     <div class="hero-main">
       <p class="kicker">Bekir Eren Keskin · 2005 · İnsansız Araç Teknikerliği</p>
       <h1>Gündüz gövde çiziyorum, gece bot yazıyorum. <em>Aralarda deklanşöre basıyorum.</em></h1>
       <p class="lede">Uçan bir şeyin önce çizimini yapmak, sonra onu düşürmemek için kod yazmak, en sonunda da dönüp fotoğrafını çekmek — hepsi aynı merakın halleri. Bu site o merakın not defteri; büyük laf yok, olan biten var.</p>
     </div>
     <aside class="hero-aside">
-      <figure class="portre-card">
-        <div class="portre-meta"><span>ESTE 400</span><span>▸ PORTRE</span></div>
-        <div class="portre-frame">
+      <figure class="portre-fig">
+        <span class="portre-blob" aria-hidden="true"></span>
+        <div class="portre-arch">
           <img src="assets/profil.jpg" alt="Bekir Eren Keskin — portre">
         </div>
-        <figcaption>bir vesikalık, ama sevimlisi</figcaption>
+        <figcaption>
+          <span>ayna selfie'si, mağaza aydınlatması</span>
+          <span class="imza">B.E.K.</span>
+        </figcaption>
       </figure>
       <div class="now-card">
         <p class="now-title">Şu sıralar</p>

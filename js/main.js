@@ -167,8 +167,31 @@
   /* ── Yıl ── */
   document.getElementById('yil').textContent = new Date().getFullYear();
 
-  /* ── Scroll'da belirme ── */
+  /* ── Açık/koyu tema ── */
+  document.getElementById('tema-btn').addEventListener('click', function () {
+    var koyu = document.documentElement.getAttribute('data-tema') === 'koyu';
+    var tema = koyu ? 'acik' : 'koyu';
+    document.documentElement.setAttribute('data-tema', tema);
+    try { localStorage.setItem('bek-tema', tema); } catch (e) {}
+  });
+
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Hero'da fareyi izleyen ışık ── */
+  var isik = document.getElementById('hero-isik');
+  var giris = document.getElementById('giris');
+  if (!reduceMotion && isik) {
+    giris.addEventListener('mousemove', function (e) {
+      var r = giris.getBoundingClientRect();
+      isik.style.transform = 'translate(' + (e.clientX - r.left - 170) + 'px,' + (e.clientY - r.top - 170) + 'px)';
+      isik.style.opacity = '1';
+    });
+    giris.addEventListener('mouseleave', function () {
+      isik.style.opacity = '0';
+    });
+  }
+
+  /* ── Scroll'da belirme ── */
   if (!reduceMotion && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -177,8 +200,8 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('section').forEach(function (sec) {
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('#foto, #proje, #notlar, #vitrin, #iletisim').forEach(function (sec) {
       sec.classList.add('reveal');
       io.observe(sec);
     });
