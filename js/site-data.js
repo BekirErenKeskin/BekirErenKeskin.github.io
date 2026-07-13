@@ -23,29 +23,30 @@ window.SITE_DATA = {
   suSiralar: [
     "staja gidiyorum, calisiyorum.",
     "uygulama gelistirmeye calisiyorum",
-    "daha paylasmam gereken bir sürü fotoğraf var",
+    "i need to touch the sea ",
   ],
 
   notlar: [
     {
-      title: "Her insan bir kere düser",
+      title: "Ben değiştim",
       date: "13 Tem 2026",
-      tag: "hayat",
-      excerpt: "İlk kırımın suçlusu o değildi; dosta fazla güvenen bendim. Düşerken öğrenilenlerin listesi.",
+      tag: "past",
+      excerpt: "Sorun başarısızlık değil, sorun pes etmen.",
       // url: "https://...",  ← istersen buraya link ekle
     },
     {
       title: "AI ile barışmak",
       date: "28 Haz 2026",
       tag: "gelecek",
-      excerpt: "Grenli fotoğraf bozuk fotoğraf değildir. Işık azaldığında hikâye biter mi, başlar mı?",
+      excerpt: "Bu kadar zor olan işleri bile bu kadar kolay bir şekilde yapması insanı hayrete düşürüyor.",
     },
     {
-      title: "LED'den telemetriye",
-      date: "2 Mar 2026",
-      tag: "gömülü",
-      excerpt: "Datasheet okumak da bir okuma biçimiymiş. STM32 ile ilk ayın notları.",
+      title: "Suçlu",
+      date: "2 Haz 2026",
+      tag: "devil",
+      excerpt: "Şeytan gerçekten var mı? Yoksa insanlar suçlarının sorumluluğunu taşımamak için mi onu yarattı.",
     },
+    
   ],
 
   gunluk: [
