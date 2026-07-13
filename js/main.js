@@ -206,4 +206,25 @@
       io.observe(sec);
     });
   }
+
+  /* ── Spotify "şu an dinliyorum" ── */
+  (function () {
+    var card = document.getElementById('spotify-card');
+    fetch('/api/now-playing')
+      .then(function (res) {
+        if (!res.ok) throw new Error('now-playing ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        if (!data || !data.title) return; // çalan/son dinlenen şarkı yoksa kart gizli kalır
+        document.getElementById('spotify-title').textContent = data.title;
+        document.getElementById('spotify-artist').textContent = data.artist || '';
+        document.getElementById('spotify-label-text').textContent = data.isPlaying ? 'şu an dinliyorum' : 'son dinlenen';
+        if (data.albumArt) document.getElementById('spotify-art-img').src = data.albumArt;
+        if (data.songUrl) card.href = data.songUrl;
+        card.classList.toggle('is-playing', !!data.isPlaying);
+        card.hidden = false;
+      })
+      .catch(function () { /* Worker'a ulaşılamazsa kart sessizce gizli kalır */ });
+  })();
 })();
