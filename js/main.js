@@ -73,6 +73,10 @@
           if (caption.length > 60) caption = caption.slice(0, 57) + '…';
           var src = (p.sizes && p.sizes.medium && p.sizes.medium.mediaUrl) || p.thumbnailUrl || p.mediaUrl;
           if (!src) return;
+          var srcsetParcalari = [];
+          if (p.sizes && p.sizes.small) srcsetParcalari.push(p.sizes.small.mediaUrl + ' 300w');
+          if (p.sizes && p.sizes.medium) srcsetParcalari.push(p.sizes.medium.mediaUrl + ' 525w');
+          if (p.sizes && p.sizes.large) srcsetParcalari.push(p.sizes.large.mediaUrl + ' 750w');
 
           var card = el('a', 'film-card');
           if (p.permalink) { card.href = p.permalink; card.target = '_blank'; card.rel = 'noopener'; }
@@ -84,6 +88,10 @@
           var frame = el('div', 'film-frame');
           var img = document.createElement('img');
           img.src = src;
+          if (srcsetParcalari.length) {
+            img.srcset = srcsetParcalari.join(', ');
+            img.sizes = '(min-width: 641px) 380px, 236px';
+          }
           img.alt = caption || 'Instagram fotoğrafı';
           img.loading = 'lazy';
           frame.appendChild(img);
