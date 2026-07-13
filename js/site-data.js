@@ -11,6 +11,8 @@
 //   beholdFeedUrl → Instagram galerisinin Behold feed adresi.
 //               Boş bırakılırsa ("") fotoğraf bölümü tamamen gizlenir.
 //   vitrinGoster → "04 Vitrin" bölümünü aç/kapat (true/false).
+//   gunluk    → Footer üstündeki katlanabilir "Site günlüğü" listesi.
+//               Yeni satır eklemek için bir { date, text } bloğu kopyala.
 // ─────────────────────────────────────────────────────────────
 
 window.SITE_DATA = {
@@ -44,5 +46,14 @@ window.SITE_DATA = {
       tag: "gömülü",
       excerpt: "Datasheet okumak da bir okuma biçimiymiş. STM32 ile ilk ayın notları.",
     },
+  ],
+
+  gunluk: [
+    { date: "Tem 2026", text: "Site Claude Design'da tasarlandı, Claude Code ile gerçek bir siteye dönüştürüldü." },
+    { date: "Tem 2026", text: "Fotoğraf galerisi Instagram'a (Behold ile) bağlandı." },
+    { date: "Tem 2026", text: "Projeler bölümü GitHub API'sine bağlandı." },
+    { date: "Tem 2026", text: "Karanlık mod ve ufak tefek animasyonlar geldi." },
+    { date: "Tem 2026", text: "Spotify 'şu an dinliyorum' kartı eklendi." },
+    { date: "Tem 2026", text: "Ziyaretçi sayacı, iletişim formu ve bu günlük eklendi." },
   ],
 };

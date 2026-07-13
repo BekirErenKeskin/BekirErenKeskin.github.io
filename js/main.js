@@ -36,6 +36,16 @@
   noteNext.innerHTML = '+ sıradaki not — <b>site-data.js</b>\'e bir kayıt eklemek yetiyor.';
   noteList.appendChild(noteNext);
 
+  /* ── Site günlüğü ── */
+  var gunlukList = document.getElementById('gunluk-list');
+  (DATA.gunluk || []).forEach(function (g) {
+    var li = el('li');
+    li.appendChild(el('span', 'g-tarih', g.date));
+    li.appendChild(el('span', null, g.text));
+    gunlukList.appendChild(li);
+  });
+  if (!gunlukList.children.length) document.getElementById('gunluk').hidden = true;
+
   /* ── Vitrin aç/kapat ── */
   if (DATA.vitrinGoster === false) document.getElementById('vitrin').hidden = true;
 
@@ -201,11 +211,88 @@
         }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('#foto, #proje, #notlar, #vitrin, #iletisim').forEach(function (sec) {
+    document.querySelectorAll('#foto, #proje, #notlar, #vitrin, #iletisim, #gunluk').forEach(function (sec) {
       sec.classList.add('reveal');
       io.observe(sec);
     });
   }
+
+  /* ── Konsol sürprizi ── */
+  try {
+    console.log(
+      '%c' +
+        '        _____\n' +
+        ' .-----[_____]-----------.\n' +
+        ' |   .-------.           |\n' +
+        ' |  |  (===)  | ESTE 400 |\n' +
+        ' |  |  (===)  |     (o)  |\n' +
+        " |   '-------'           |\n" +
+        " '-----------------------'\n",
+      'color:#c67139;font-family:monospace;line-height:1.25'
+    );
+    console.log(
+      '%cKonsolu açtın demek. Burası sahne arkası — kablolar ortada, kusura bakma.\n' +
+        'Merak ettiysen kodun tamamı github.com/BekirErenKeskin\'de. Kurcalamak serbest.',
+      'color:#82796a;font-family:monospace'
+    );
+  } catch (e) {}
+
+  /* ── Retro ziyaretçi sayacı ── */
+  (function () {
+    fetch('/api/ziyaret')
+      .then(function (res) {
+        if (!res.ok) throw new Error('ziyaret ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        if (data == null || typeof data.toplam !== 'number') return;
+        var digits = document.getElementById('sayac-digits');
+        String(data.toplam).padStart(6, '0').split('').forEach(function (d) {
+          digits.appendChild(el('span', 'sayac-digit', d));
+        });
+        document.getElementById('sayac').hidden = false;
+      })
+      .catch(function () { /* sayaç gelmezse footer sade kalır */ });
+  })();
+
+  /* ── İletişim formu (Web3Forms) ── */
+  (function () {
+    var form = document.getElementById('iletisim-form');
+    var btn = document.getElementById('form-btn');
+    var durum = document.getElementById('form-durum');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'gönderiliyor…';
+      durum.textContent = '';
+      durum.classList.remove('basarili');
+      var fd = new FormData(form);
+      fd.append('access_key', 'cd06855f-e2d0-4e3e-aff3-bedfac10db32');
+      fd.append('subject', 'bekirerenkeskin.com.tr üzerinden yeni mesaj');
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: fd,
+        headers: { Accept: 'application/json' },
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data && data.success) {
+            form.reset();
+            durum.textContent = 'Ulaştı. Teşekkürler — en kısa zamanda dönerim.';
+            durum.classList.add('basarili');
+          } else {
+            throw new Error('web3forms');
+          }
+        })
+        .catch(function () {
+          durum.textContent = 'Bir şeyler ters gitti. İstersen doğrudan e-posta ile yaz.';
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'gönder';
+        });
+    });
+  })();
 
   /* ── Spotify "şu an dinliyorum" ── */
   (function () {

@@ -148,9 +148,37 @@
         <span class="contact-handle">ben@bekirerenkeskin.com.tr ↗</span>
       </a>
     </div>
+
+    <form id="iletisim-form" class="iletisim-form">
+      <p class="form-baslik">ya da buradan yaz</p>
+      <div class="form-satir">
+        <input class="form-input" type="text" name="name" placeholder="isim" required autocomplete="name">
+        <input class="form-input" type="email" name="email" placeholder="e-posta" required autocomplete="email">
+      </div>
+      <textarea class="form-input" name="message" placeholder="mesaj" rows="4" required></textarea>
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+      <div class="form-alt">
+        <button type="submit" class="form-btn" id="form-btn">gönder</button>
+        <p class="form-durum" id="form-durum" role="status" aria-live="polite"></p>
+      </div>
+    </form>
   </section>
 
-  <footer>© <span id="yil"></span> Bekir Eren Keskin · El yapımıdır; kırım raporları dahil.</footer>
+  <!-- SİTE GÜNLÜĞÜ -->
+  <section id="gunluk">
+    <details class="gunluk-box">
+      <summary>Site günlüğü <span class="gunluk-ipucu">— bu sayfa nasıl bu hâle geldi</span></summary>
+      <ul class="gunluk-list" id="gunluk-list"></ul>
+    </details>
+  </section>
+
+  <footer>
+    <span>© <span id="yil"></span> Bekir Eren Keskin · El yapımıdır; kırım raporları dahil.</span>
+    <span class="sayac" id="sayac" hidden title="siz dahil">
+      <span class="sayac-label">ziyaret</span>
+      <span class="sayac-digits" id="sayac-digits"></span>
+    </span>
+  </footer>
 
   <script src="js/site-data.js"></script>
   <script src="js/main.js"></script>
