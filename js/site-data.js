@@ -61,5 +61,6 @@ window.SITE_DATA = {
     { date: "Tem 2026", text: "Özel 404 sayfası ve temel SEO (robots.txt, sitemap.xml, arama motoru bilgi kartı) eklendi." },
     { date: "Tem 2026", text: "Projeler bölümü artık GitHub'a değil kendi önbellekli sunucusuna bağlanıyor, sık gelen ziyaretçilerde daha hızlı." },
     { date: "Tem 2026", text: "Gerçek bir performans/erişilebilirlik taraması yapıldı ve bulunanlar düzeltildi: kontrast, sayfa yükleme hızı, görsel boyutları." },
+    { date: "Tem 2026", text: "Google arama sonuçlarında görünen açıklama metni güncellendi." },
   ],
 };
