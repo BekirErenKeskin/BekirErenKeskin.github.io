@@ -224,7 +224,10 @@
   document.getElementById('tema-btn').addEventListener('click', function (e) {
     var koyu = document.documentElement.getAttribute('data-tema') === 'koyu';
     var tema = koyu ? 'acik' : 'koyu';
+    var uygulandi = false;
     function uygula() {
+      if (uygulandi) return;
+      uygulandi = true;
       document.documentElement.setAttribute('data-tema', tema);
       try { localStorage.setItem('bek-tema', tema); } catch (err) {}
     }
@@ -234,25 +237,33 @@
       return;
     }
 
-    var x = e.clientX;
-    var y = e.clientY;
-    var endRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    );
-
-    var transition = document.startViewTransition(uygula);
-    transition.ready.then(function () {
-      document.documentElement.animate(
-        {
-          clipPath: [
-            'circle(0px at ' + x + 'px ' + y + 'px)',
-            'circle(' + endRadius + 'px at ' + x + 'px ' + y + 'px)',
-          ],
-        },
-        { duration: 420, easing: 'ease-in-out', pseudoElement: '::view-transition-new(root)' }
+    try {
+      var x = e.clientX;
+      var y = e.clientY;
+      var endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
       );
-    });
+
+      var transition = document.startViewTransition(uygula);
+      transition.ready
+        .then(function () {
+          document.documentElement.animate(
+            {
+              clipPath: [
+                'circle(0px at ' + x + 'px ' + y + 'px)',
+                'circle(' + endRadius + 'px at ' + x + 'px ' + y + 'px)',
+              ],
+            },
+            { duration: 420, easing: 'ease-in-out', pseudoElement: '::view-transition-new(root)' }
+          );
+        })
+        .catch(function () { /* daire animasyonu başarısız olsa da tema zaten değişti */ });
+      // Beklenmedik bir durumda transition hiç tamamlanmazsa tema yine de uygulansın
+      transition.finished.catch(function () { uygula(); });
+    } catch (err) {
+      uygula();
+    }
   });
 
   /* ── Hero'da fareyi izleyen ışık ── */
