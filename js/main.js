@@ -150,38 +150,35 @@
 
     iskeletGoster(3);
 
-    fetch('https://api.github.com/users/' + user + '/repos?sort=updated&per_page=100')
+    fetch('/api/projeler')
       .then(function (res) {
-        if (!res.ok) throw new Error('github ' + res.status);
+        if (!res.ok) throw new Error('projeler ' + res.status);
         return res.json();
       })
       .then(function (repos) {
-        repos = (repos || [])
-          .filter(function (r) { return !r.fork; })
-          .sort(function (a, b) { return new Date(b.updated_at) - new Date(a.updated_at); });
-        if (!repos.length) return fallback();
+        if (!repos || !repos.length) return fallback();
         list.innerHTML = '';
         repos.forEach(function (r) {
           var row = el('a', 'repo-row');
-          row.href = r.html_url;
+          row.href = r.url;
           row.target = '_blank';
           row.rel = 'noopener';
           row.appendChild(el('span', 'repo-name', r.name));
-          row.appendChild(el('span', 'repo-desc', r.description || '—'));
+          row.appendChild(el('span', 'repo-desc', r.desc || '—'));
           var meta = el('span', 'repo-meta');
-          if (r.language) {
+          if (r.lang) {
             var lang = el('span', 'lang');
             var dot = el('span', 'lang-dot');
-            dot.style.background = DOT[r.language] || 'var(--color-neutral-500)';
+            dot.style.background = DOT[r.lang] || 'var(--color-neutral-500)';
             lang.appendChild(dot);
-            lang.appendChild(document.createTextNode(r.language));
+            lang.appendChild(document.createTextNode(r.lang));
             meta.appendChild(lang);
           }
           var stars = el('span', 'stars');
           stars.innerHTML = STAR_SVG;
-          stars.appendChild(document.createTextNode(' ' + r.stargazers_count));
+          stars.appendChild(document.createTextNode(' ' + r.stars));
           meta.appendChild(stars);
-          meta.appendChild(el('span', null, relTime(r.updated_at)));
+          meta.appendChild(el('span', null, relTime(r.updated)));
           row.appendChild(meta);
           list.appendChild(row);
         });
