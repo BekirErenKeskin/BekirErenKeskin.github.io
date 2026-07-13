@@ -3,6 +3,7 @@
 (function () {
   'use strict';
   var DATA = window.SITE_DATA || {};
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function el(tag, className, text) {
     var node = document.createElement(tag);
@@ -128,13 +129,26 @@
     };
     var STAR_SVG = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"></path></svg>';
 
+    function iskeletGoster(n) {
+      for (var i = 0; i < n; i++) {
+        var row = el('div', 'repo-row skeleton-row');
+        row.appendChild(el('span', 'skeleton skeleton-name'));
+        row.appendChild(el('span', 'skeleton skeleton-desc'));
+        row.appendChild(el('span', 'skeleton skeleton-meta'));
+        list.appendChild(row);
+      }
+    }
+
     function fallback() {
+      list.innerHTML = '';
       var a = el('a', 'repo-fallback', 'github.com/' + user + ' ↗');
       a.href = 'https://github.com/' + user;
       a.target = '_blank';
       a.rel = 'noopener';
       list.appendChild(a);
     }
+
+    iskeletGoster(3);
 
     fetch('https://api.github.com/users/' + user + '/repos?sort=updated&per_page=100')
       .then(function (res) {
@@ -146,6 +160,7 @@
           .filter(function (r) { return !r.fork; })
           .sort(function (a, b) { return new Date(b.updated_at) - new Date(a.updated_at); });
         if (!repos.length) return fallback();
+        list.innerHTML = '';
         repos.forEach(function (r) {
           var row = el('a', 'repo-row');
           row.href = r.html_url;
@@ -172,20 +187,73 @@
         });
       })
       .catch(fallback);
+
+    /* — 3D tilt: sadece fare + hassas işaretçili cihazlarda — */
+    var tiltDestekli = !reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (tiltDestekli) {
+      var MAX_TILT = 6;
+      var tiltRaf = null;
+      list.addEventListener('mousemove', function (e) {
+        var row = e.target.closest('.repo-row');
+        if (!row || row.classList.contains('skeleton-row')) return;
+        if (tiltRaf) cancelAnimationFrame(tiltRaf);
+        tiltRaf = requestAnimationFrame(function () {
+          var r = row.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width;
+          var py = (e.clientY - r.top) / r.height;
+          var rotY = (px - 0.5) * MAX_TILT * 2;
+          var rotX = (0.5 - py) * MAX_TILT * 2;
+          row.style.transition = 'none';
+          row.style.transform = 'perspective(700px) rotateX(' + rotX.toFixed(2) + 'deg) rotateY(' + rotY.toFixed(2) + 'deg)';
+        });
+      });
+      list.addEventListener('mouseout', function (e) {
+        var row = e.target.closest('.repo-row');
+        if (!row || row.classList.contains('skeleton-row')) return;
+        if (row.contains(e.relatedTarget)) return;
+        row.style.transition = 'transform .35s ease';
+        row.style.transform = 'perspective(700px)';
+      });
+    }
   })();
 
   /* ── Yıl ── */
   document.getElementById('yil').textContent = new Date().getFullYear();
 
-  /* ── Açık/koyu tema ── */
-  document.getElementById('tema-btn').addEventListener('click', function () {
+  /* ── Açık/koyu tema: diyafram (dairesel) geçişi ── */
+  document.getElementById('tema-btn').addEventListener('click', function (e) {
     var koyu = document.documentElement.getAttribute('data-tema') === 'koyu';
     var tema = koyu ? 'acik' : 'koyu';
-    document.documentElement.setAttribute('data-tema', tema);
-    try { localStorage.setItem('bek-tema', tema); } catch (e) {}
-  });
+    function uygula() {
+      document.documentElement.setAttribute('data-tema', tema);
+      try { localStorage.setItem('bek-tema', tema); } catch (err) {}
+    }
 
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !document.startViewTransition) {
+      uygula();
+      return;
+    }
+
+    var x = e.clientX;
+    var y = e.clientY;
+    var endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    var transition = document.startViewTransition(uygula);
+    transition.ready.then(function () {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            'circle(0px at ' + x + 'px ' + y + 'px)',
+            'circle(' + endRadius + 'px at ' + x + 'px ' + y + 'px)',
+          ],
+        },
+        { duration: 420, easing: 'ease-in-out', pseudoElement: '::view-transition-new(root)' }
+      );
+    });
+  });
 
   /* ── Hero'da fareyi izleyen ışık ── */
   var isik = document.getElementById('hero-isik');
