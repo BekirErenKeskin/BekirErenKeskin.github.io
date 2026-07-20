@@ -222,6 +222,29 @@
     }
   })();
 
+  /* ── Vitrin: Nakar kartına 3D tilt (repo kartlarıyla aynı mantık, kart büyük olduğu için açı daha düşük) ── */
+  (function () {
+    var kart = document.getElementById('nakar-card');
+    if (!kart) return;
+    if (reduceMotion || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    var MAX_TILT = 3.5;
+    var raf = null;
+    kart.addEventListener('mousemove', function (e) {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () {
+        var r = kart.getBoundingClientRect();
+        var rotY = ((e.clientX - r.left) / r.width - 0.5) * MAX_TILT * 2;
+        var rotX = (0.5 - (e.clientY - r.top) / r.height) * MAX_TILT * 2;
+        kart.style.transition = 'none';
+        kart.style.transform = 'perspective(900px) rotateX(' + rotX.toFixed(2) + 'deg) rotateY(' + rotY.toFixed(2) + 'deg)';
+      });
+    });
+    kart.addEventListener('mouseleave', function () {
+      kart.style.transition = 'transform .35s ease';
+      kart.style.transform = 'perspective(900px)';
+    });
+  })();
+
   /* ── Yıl ── */
   document.getElementById('yil').textContent = new Date().getFullYear();
 
